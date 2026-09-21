@@ -1,0 +1,31 @@
+{
+  "name": "sayal-e2e",
+  "version": "1.0.0",
+  "description": "Playwright + TypeScript UI suite (POM) for the Sayal campaign platform — pre-production",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:critical": "playwright test --grep @P0",
+    "test:auth": "playwright test tests/auth",
+    "test:requests": "playwright test tests/requests",
+    "test:clients": "playwright test tests/clients",
+    "test:admin": "playwright test tests/admin",
+    "test:reports": "playwright test tests/reports",
+    "test:channels": "playwright test tests/channels",
+    "report": "playwright show-report",
+    "codegen": "playwright codegen https://pre-sayal.housingapps.sa",
+    "install:browsers": "playwright install chromium",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.0",
+    "dotenv": "^17.2.3",
+    "typescript": "^5.9.3"
+  }
+}
