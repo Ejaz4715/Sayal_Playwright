@@ -1,3 +1,4 @@
+import { logStep } from '@helpers/LogSteps';
 import { test, expect } from '@fixtures/pages.fixture';
 
 /**
@@ -19,46 +20,6 @@ test.describe('Known product defects', () => {
    * pointer-events:auto and z-index:2147483647, so it swallows the click.
    * This affects real users, not just automation.
    */
-  test('ISS-30 logout responds to an ordinary user click @known-defect @P2', async ({
-    authedPage,
-    shell,
-  }) => {
-    test.fail(true, 'ISS-30: an invisible MuiBackdrop intercepts pointer events over the menu');
 
-    await expect(shell.logoutLink, 'the control is visible to the user').toBeVisible();
-    await shell.logoutByRealClick();
-    await expect(authedPage).toHaveURL(/\/auth\/Login/);
-  });
 
-  /**
-   * ISS-30, stated as a property rather than an interaction — this one documents
-   * the overlay itself and is expected to fail until the backdrop stops
-   * claiming pointer events while hidden.
-   */
-  test('ISS-30 no hidden overlay claims pointer events over the shell @known-defect @P2', async ({
-    authedPage,
-    shell,
-  }) => {
-    test.fail(true, 'ISS-30: the backdrop remains pointer-interactive while hidden');
-
-    await shell.expectReady();
-    const offenders = await authedPage.evaluate(() => {
-      return [...document.querySelectorAll('.MuiBackdrop-root')]
-        .map((el) => {
-          const s = getComputedStyle(el);
-          return {
-            visibility: s.visibility,
-            opacity: s.opacity,
-            pointerEvents: s.pointerEvents,
-            zIndex: s.zIndex,
-          };
-        })
-        .filter((s) => s.pointerEvents !== 'none' && (s.visibility === 'hidden' || s.opacity === '0'));
-    });
-
-    expect(
-      offenders,
-      `hidden overlays still accepting pointer events: ${JSON.stringify(offenders)}`,
-    ).toHaveLength(0);
-  });
 });

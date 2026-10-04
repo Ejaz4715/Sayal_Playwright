@@ -1,0 +1,951 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--no-deps",
+      "authentication-and-logout-journey.spec.ts"
+    ],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\.setup\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "sayal",
+        "name": "sayal",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [
+          "/auth\\.setup\\.ts/",
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/",
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "tests/**/*.spec.{js,ts}",
+          "e2e-scenarios/tests/**/*.spec.{js,ts}"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-journey",
+        "name": "auth-journey",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-negative",
+        "name": "auth-negative",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-10-04-14-58-54.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\auth\\authentication-and-logout-journey.spec.ts",
+      "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authentication journey",
+          "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 Login page renders all three inputs and the CAPTCHA image",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 16,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4051,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the login page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify email field is visible",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 03: Verify password field is visible",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 04: Verify input is visible",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Verify image is visible",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:58:55.268Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 16,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--cb4c7-nputs-and-the-CAPTCHA-image-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--cb4c7-nputs-and-the-CAPTCHA-image-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--cb4c7-nputs-and-the-CAPTCHA-image-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-6721ca8223f1c0e2439c",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 16,
+              "column": 7
+            },
+            {
+              "title": "TC-02 Submit is disabled until all three fields are filled",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 36,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4386,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the login page",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 02: Enter a value in the email field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Enter a value in the password field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify submit button is disabled",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Enter a value in the CAPTCHA field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 06: Verify submit button is enabled",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:58:59.806Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 36,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--d0588-all-three-fields-are-filled-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--d0588-all-three-fields-are-filled-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--d0588-all-three-fields-are-filled-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-00fbb92cfa6f3101b1f3",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 36,
+              "column": 7
+            },
+            {
+              "title": "TC-03 Email is trimmed of surrounding whitespace",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 62,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2561,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the login page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Enter a value in the email field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Click the password field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify email field has the expected value",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:59:04.403Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 62,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--94b54-d-of-surrounding-whitespace-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--94b54-d-of-surrounding-whitespace-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--94b54-d-of-surrounding-whitespace-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-aef27a0670a8c3893210",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 62,
+              "column": 7
+            },
+            {
+              "title": "TC-04 Required messages appear after clearing a filled field",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 77,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2808,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the login page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Enter a value in the email field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Clear the email field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Click the password field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Verify first is visible",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:59:07.159Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 77,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--c6088-ter-clearing-a-filled-field-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--c6088-ter-clearing-a-filled-field-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--c6088-ter-clearing-a-filled-field-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-a99ddf9a6510b546c342",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 77,
+              "column": 7
+            },
+            {
+              "title": "TC-05 Password eyetoggle reveals and re-hides",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 97,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3386,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the login page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Enter a value in the password field",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify password field has the expected attribute",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 04: Click the password eye toggle",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Verify password field has the expected attribute",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 06: Click the password eye toggle",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 07: Verify password field has the expected attribute",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:59:10.154Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 97,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--f0d0a-toggle-reveals-and-re-hides-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--f0d0a-toggle-reveals-and-re-hides-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--f0d0a-toggle-reveals-and-re-hides-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-4b6d6be86e3362fd4404",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 97,
+              "column": 7
+            },
+            {
+              "title": "TC-06 Valid credentials issue a token, land on the dashboard, with no OTP step",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 126,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6442,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the login page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Enter the login credentials",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Submit valid credentials and wait for login success",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify expect authenticated as on the application shell",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 05: Read the stored authentication token",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 06: Verify otp routes meets the expected condition",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:59:13.739Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 126,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--bd58d--dashboard-with-no-OTP-step-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--bd58d--dashboard-with-no-OTP-step-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--bd58d--dashboard-with-no-OTP-step-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-352a33764127b09a4092",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 126,
+              "column": 7
+            }
+          ]
+        },
+        {
+          "title": "Logout journey",
+          "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+          "line": 176,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-07 logout responds to an ordinary user click",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 179,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5001,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Verify logout link is visible",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Click the setting icon and logout link using a real user interaction",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 03: Verify authenticated page has the expected URL of login page",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:59:20.481Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 179,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--18440-s-to-an-ordinary-user-click-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--18440-s-to-an-ordinary-user-click-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--18440-s-to-an-ordinary-user-click-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-453fbeab9408f95ecefc",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 179,
+              "column": 7
+            },
+            {
+              "title": "TC-08 Logout clears the token, redirects, and Back does not restore the session",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                        "line": 194,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "auth-journey",
+                  "projectName": "auth-journey",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2769,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Navigate to the requested page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify expect authenticated as on the application shell",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Log out of the application",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Wait for the expected page navigation",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Verify no authentication token is stored",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 06: Navigate back to the previous page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 07: Verify text \"\" is hidden",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 08: Read the stored authentication token",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:59:25.712Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\auth\\authentication-and-logout-journey.spec.ts",
+                            "line": 194,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--81c86-oes-not-restore-the-session-auth-journey\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--81c86-oes-not-restore-the-session-auth-journey\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-auth-authentication--81c86-oes-not-restore-the-session-auth-journey\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "92535a338fd5088e140d-18240c65dbc54617fc8c",
+              "file": "tests/auth/authentication-and-logout-journey.spec.ts",
+              "line": 194,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T14:58:54.804Z",
+    "duration": 34179.07,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -139,12 +139,12 @@ export const SETTINGS = {
 export const READONLY_FIXTURES = {
   /** Client holding a 14-digit CR and 13-digit VAT — the ISS-38 / ISS-02 / ISS-03 subject. */
   client: {
-    uuid: '42eee395-7684-4155-86cd-1d8ab0bd1395',
-    companyName: 'الشركة الوطنية للاسكان',
-    crNumber: '19065734264534',
-    vatNumber: '3337778980983',
+    uuid: '73a9f08d-0016-4d7d-96e4-b3a90c88e819',
+    companyName: 'Testing Client for Automation test',
+    crNumber: '7920383209',
+    vatNumber: '3337778980',
     mobile: '555000333',
-    email: 'salma.zaki909@gmail.com',
+    email: 'testautomation@email.com',
     idNumber: '2420333444',
   },
   /** One campaign request per status, found by scanning all 261 standard requests. */

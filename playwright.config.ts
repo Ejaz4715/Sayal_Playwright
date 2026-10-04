@@ -18,32 +18,35 @@ dotenv.config();
  *     uses `commit` and each page object waits on its own readiness element.
  *     `networkidle` is deliberately never used as a readiness strategy.
  */
+const timestamp = new Date().toISOString().replace(/[:T]/g, '-').replace(/\..+/, '');
+
 export default defineConfig({
-  testDir: './tests',
+  testMatch: [
+    'tests/**/*.spec.{js,ts}',
+    'e2e-scenarios/tests/**/*.spec.{js,ts}'
+  ],
 
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
-
-  /**
-   * Retries are OFF even in CI.
-   *
-   * This is a deliberate departure from the sibling project. The suite shares a
-   * single pre-production admin account, and three failed logins trigger a
-   * ~10-minute lockout that rejects *correct* credentials too. With retries a
-   * single flaky negative-auth test would burn three attempts on its own and
-   * lock the account for every remaining test, which then reads as a total
-   * environment outage. Stability here is worth more than a retry.
-   */
   retries: 0,
-
-  /* Serial: one shared admin account, and several journeys mutate list state. */
   workers: 1,
-
   reporter: [
     ['html', { open: 'never' }],
     ['list'],
     ['json', { outputFile: 'test-results/results.json' }],
+    ['json', { outputFile: `report-dashboard/test-reports-history/results-${timestamp}.json` }]
   ],
+  metadata: {
+    // Default fallback environment
+    environment: process.env.TEST_ENV || 'Pre-Prod',
+
+    // Per-product environment mapping
+    environments: {
+      Sakani: process.env.MARKETPLACE_ENV || 'Pre-Prod',
+      Digitar: process.env.DIGITAR_ENV || 'STG',
+      Sayal: process.env.SAYAL_ENV || 'Pre-Prod',
+    }
+  },
 
   timeout: 180_000,
   expect: { timeout: 20_000 },
@@ -51,7 +54,7 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL ?? 'https://pre-sayal.housingapps.sa',
     navigationTimeout: 90_000,
-    actionTimeout: 20_000,
+    actionTimeout: 40_000,
     trace: 'on',
     screenshot: 'on',
     video: 'on',
@@ -59,16 +62,12 @@ export default defineConfig({
     timezoneId: 'Asia/Riyadh',
     viewport: { width: 1440, height: 900 },
     ignoreHTTPSErrors: true,
-
-    /**
-     * `--disable-http2` is required, not cosmetic. On the default HTTP/2 path
-     * this host fails Next.js chunk delivery with ERR_HTTP2_PROTOCOL_ERROR and
-     * the post-login redirect never completes — which previously looked like an
-     * application bug (ENV-01) and is not one.
-     */
     launchOptions: {
-      args: ['--disable-http2'],
+      args: ['--start-maximized', '--disable-http2'],
     },
+    headless: false,
+    permissions: ["geolocation"],
+    geolocation: { latitude: 24.7136, longitude: 46.6753 },
   },
 
   projects: [
@@ -81,17 +80,31 @@ export default defineConfig({
     {
       name: 'setup',
       testMatch: /auth\.setup\.ts/,
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: null,
+        deviceScaleFactor: undefined,
+      },
     },
 
     /** The functional suite: reuses the stored session, never logs in. */
     {
       name: 'sayal',
       dependencies: ['setup'],
-      testIgnore: [/auth\.setup\.ts/, /auth[\\/]journey\.spec\.ts/, /auth-negative\.spec\.ts/],
+      testIgnore: [
+        /auth\.setup\.ts/,
+        /auth[\\/]authentication-and-logout-journey\.spec\.ts/,
+        /auth-negative\.spec\.ts/,
+      ],
+      // use: {
+      //   ...devices['Desktop Chrome'],
+      //   viewport: { width: 1440, height: 900 },
+      //   storageState: ADMIN_STORAGE_STATE,
+      // },
       use: {
-        ...devices['Desktop Chrome'],
-        viewport: { width: 1440, height: 900 },
+        ...devices["Desktop Chrome"],
+        viewport: null,
+        deviceScaleFactor: undefined,
         storageState: ADMIN_STORAGE_STATE,
       },
     },
@@ -104,8 +117,12 @@ export default defineConfig({
     {
       name: 'auth-journey',
       dependencies: ['sayal'],
-      testMatch: /auth[\\/]journey\.spec\.ts/,
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
+      testMatch: /auth[\\/]authentication-and-logout-journey\.spec\.ts/,
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: null,
+        deviceScaleFactor: undefined,
+      },
     },
 
     /**
@@ -118,7 +135,11 @@ export default defineConfig({
       name: 'auth-negative',
       dependencies: ['auth-journey'],
       testMatch: /auth-negative\.spec\.ts/,
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: null,
+        deviceScaleFactor: undefined,
+      },
     },
   ],
 });

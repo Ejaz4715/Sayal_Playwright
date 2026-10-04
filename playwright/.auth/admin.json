@@ -1,0 +1,69 @@
+{
+  "cookies": [
+    {
+      "name": "cooki_N",
+      "value": "!Y1qvB0DMx4zEwhUy7qEQ3meIbkR+JuvcULUtKEIHzKPrXQ7mZ0qY6uMUKssLKfSK3xvNks/v3fggGw==",
+      "domain": "pre-sayal.housingapps.sa",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "TS0190528d",
+      "value": "01e7504a430bd1c8264f6932b164f53f5b02313d01596cd16bf96e44eb52e96b71a2a4c03b57034f95f1e78fa7fa8e90ff0972c704",
+      "domain": ".pre-sayal.housingapps.sa",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sayal_user_lng",
+      "value": "ar",
+      "domain": "pre-sayal.housingapps.sa",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "OClmoOot",
+      "value": "jwh3bXC7PVpftlSQS3rdN6ezBYSgoVSEV-V2UCFEcnH89MDN55NTYVM-PrZiSdx6WtZLT3Rs5U0oqohMY6oBtm9SlLopBAuQSWnAUiOh0LyTBZh5WwpJFdDnuxpymQryuOKw96md3qlHz_uvnGIcGwgO42KWnHgEPiLtR6oQO0WIjTgMhOV0NO9ZCC5EVerUnZrHu4JFzVywcBdX1E3ErDy_jL2tW6OU4mkrG6xr_J9s1Pf_U9OfHD86q0vps--nANBwClX-8-yu60ce79l0rdXjyyAQ8arODr284QuKo8IyYKLnASUSiUY_60RBzNu__UPtf8li-eexHgIyblBPeYjCul3yYqFA-It0Ft6WpN4iDMho-agMPC7DLH6ARSUXykUJC3grLIcWTiASy0eGr5Z2LAW5f6Z2Hv8A5KTXRxdBY35h_3i2jOfYpQ==|f222c09f6bcefa1290813213c4a3cbb6a5f5781a",
+      "domain": "pre-sayal.housingapps.sa",
+      "path": "/",
+      "expires": 1825662853.397472,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sayal_token",
+      "value": "3692|BxtxkkIY6HYe756R84AnO512eLFjHvPVOl7muEKq13a0f15e",
+      "domain": "pre-sayal.housingapps.sa",
+      "path": "/",
+      "expires": 1825662857.141103,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://pre-sayal.housingapps.sa",
+      "localStorage": [
+        {
+          "name": "FTzyeq12rr",
+          "value": "A_ufDAahAQAAnaYhpQYDkRRhSWDk5_4AK9f0wwhVbLB09wMuAP3cYWdRUrImAcCoyK6ucvMCwH8AAEB3AAAAAA=="
+        },
+        {
+          "name": "l_FTzyeq12rr",
+          "value": "17911028537632609396680"
+        }
+      ]
+    }
+  ]
+}

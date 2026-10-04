@@ -58,6 +58,13 @@ export abstract class BasePage {
    * Returns null when logged out, which is itself an assertable state.
    */
   async authToken(): Promise<string | null> {
-    return this.page.evaluate(() => window.localStorage.getItem('sayal_token'));
+    const tokenCookie = (await this.page.context().cookies(this.page.url())).find(
+      (cookie) => cookie.name === 'sayal_token',
+    );
+    if (tokenCookie) return tokenCookie.value;
+
+    const storage = await this.page.evaluate(() => window.localStorage.getItem('sayal_token'));
+    
+    return storage;
   }
 }

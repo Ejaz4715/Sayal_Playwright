@@ -1,0 +1,316 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--no-deps",
+      "definition-platforms.spec.ts"
+    ],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\.setup\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "sayal",
+        "name": "sayal",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [
+          "/auth\\.setup\\.ts/",
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/",
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "tests/**/*.spec.{js,ts}",
+          "e2e-scenarios/tests/**/*.spec.{js,ts}"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-journey",
+        "name": "auth-journey",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-negative",
+        "name": "auth-negative",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-10-04-14-56-41.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\settings\\definition-platforms.spec.ts",
+      "file": "tests/settings/definition-platforms.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Known product defects",
+          "file": "tests/settings/definition-platforms.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 Verify platform URL rejects a javascript: scheme",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\settings\\definition-platforms.spec.ts",
+                        "line": 17,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3998,
+                      "error": {
+                        "message": "Error: API / WAF should reject javascript scheme submission\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m200\u001b[39m",
+                        "stack": "Error: API / WAF should reject javascript scheme submission\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m200\u001b[39m\n    at D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\settings\\definition-platforms.spec.ts:55:93",
+                        "location": {
+                          "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\settings\\definition-platforms.spec.ts",
+                          "column": 93,
+                          "line": 55
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 53 |\u001b[39m     \u001b[36mif\u001b[39m (response) {\n \u001b[90m 54 |\u001b[39m       \u001b[90m// Rejects via WAF (403/HTML Request Rejected) or API error (400)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 55 |\u001b[39m       expect(response\u001b[33m.\u001b[39mstatus()\u001b[33m,\u001b[39m \u001b[32m'API / WAF should reject javascript scheme submission'\u001b[39m)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 56 |\u001b[39m     } \u001b[36melse\u001b[39m {\n \u001b[90m 57 |\u001b[39m       \u001b[90m// If blocked on frontend before hitting network\u001b[39m\n \u001b[90m 58 |\u001b[39m       \u001b[36mconst\u001b[39m isValidScheme \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m urlField\u001b[33m.\u001b[39mevaluate((el\u001b[33m:\u001b[39m \u001b[33mHTMLInputElement\u001b[39m) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\settings\\definition-platforms.spec.ts",
+                            "column": 93,
+                            "line": 55
+                          },
+                          "message": "Error: API / WAF should reject javascript scheme submission\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: not \u001b[32m200\u001b[39m\n\n\u001b[0m \u001b[90m 53 |\u001b[39m     \u001b[36mif\u001b[39m (response) {\n \u001b[90m 54 |\u001b[39m       \u001b[90m// Rejects via WAF (403/HTML Request Rejected) or API error (400)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 55 |\u001b[39m       expect(response\u001b[33m.\u001b[39mstatus()\u001b[33m,\u001b[39m \u001b[32m'API / WAF should reject javascript scheme submission'\u001b[39m)\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBe(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 56 |\u001b[39m     } \u001b[36melse\u001b[39m {\n \u001b[90m 57 |\u001b[39m       \u001b[90m// If blocked on frontend before hitting network\u001b[39m\n \u001b[90m 58 |\u001b[39m       \u001b[36mconst\u001b[39m isValidScheme \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m urlField\u001b[33m.\u001b[39mevaluate((el\u001b[33m:\u001b[39m \u001b[33mHTMLInputElement\u001b[39m) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\settings\\definition-platforms.spec.ts:55:93\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Navigate to the requested page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify all form fields are visible",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Fill in valid required form data",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Enter invalid javascript: scheme in platform URL",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Intercept network call and click submit button",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 06: Verify request rejection or URL protocol invalidity",
+                          "duration": 1
+                        }
+                      ],
+                      "startTime": "2026-10-04T14:56:42.447Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\settings\\definition-platforms.spec.ts",
+                            "line": 17,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-settings-definition--c92d9-rejects-a-javascript-scheme-sayal\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-settings-definition--c92d9-rejects-a-javascript-scheme-sayal\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-settings-definition--c92d9-rejects-a-javascript-scheme-sayal\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-settings-definition--c92d9-rejects-a-javascript-scheme-sayal\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\settings\\definition-platforms.spec.ts",
+                        "column": 93,
+                        "line": 55
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "dcd486b19065b0ed029c-f6a76e536dbe3f137484",
+              "file": "tests/settings/definition-platforms.spec.ts",
+              "line": 17,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T14:56:41.910Z",
+    "duration": 5259.786,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

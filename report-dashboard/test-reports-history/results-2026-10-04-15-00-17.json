@@ -1,0 +1,995 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--no-deps",
+      "admin-lists.spec.ts"
+    ],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\.setup\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "sayal",
+        "name": "sayal",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [
+          "/auth\\.setup\\.ts/",
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/",
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "tests/**/*.spec.{js,ts}",
+          "e2e-scenarios/tests/**/*.spec.{js,ts}"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-journey",
+        "name": "auth-journey",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-negative",
+        "name": "auth-negative",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-10-04-15-00-17.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\admin\\admin-lists.spec.ts",
+      "file": "tests/admin/admin-lists.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin lists",
+          "file": "tests/admin/admin-lists.spec.ts",
+          "line": 18,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 User list renders the five expected columns and status badges",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 19,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7755,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the user list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify the user list column headers",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify the user list contains records",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Read all rows from the user list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Verify some meets the expected condition",
+                          "duration": 1
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:00:18.381Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 19,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-eca11-d-columns-and-status-badges-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-eca11-d-columns-and-status-badges-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-eca11-d-columns-and-status-badges-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-4d9ab7d7b497ef4c4acc",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 19,
+              "column": 7
+            },
+            {
+              "title": "TC-02 Filters module lists records across pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 42,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5762,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the filters list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify the filters list column headers",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify the filters list contains records",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Check the last page number in the filters list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Verify last page meets the expected condition",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 06: Read all rows from the filters list",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 07: Verify the displayed data meets the expected condition",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:00:26.523Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 42,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-d3f8b--lists-records-across-pages-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-d3f8b--lists-records-across-pages-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-d3f8b--lists-records-across-pages-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-c33544ec5141f9e98b2f",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 42,
+              "column": 7
+            },
+            {
+              "title": "TC-03 Platforms list renders the expected source platforms",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 71,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4464,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the platforms list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify the platforms list column headers",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Read all rows from the platforms list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify names meets the expected condition",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:00:32.409Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 71,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-42457-e-expected-source-platforms-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-42457-e-expected-source-platforms-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-42457-e-expected-source-platforms-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-f02e811ae388fc488061",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 71,
+              "column": 7
+            },
+            {
+              "title": "TC-04 SMS sender list matches all registered sender identities",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 92,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6417,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the senders",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify the senders column headers",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Read all rows from the senders",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify sort meets the expected condition",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:00:36.992Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 92,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-dc0d5-egistered-sender-identities-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-dc0d5-egistered-sender-identities-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-dc0d5-egistered-sender-identities-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-33b8c6ea51b06cca5919",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 92,
+              "column": 7
+            },
+            {
+              "title": "TC-05 Invoice list renders the expected columns and statuses",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 111,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5414,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the invoice list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify the invoice list column headers",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify the invoice list contains records",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 04: Read all rows from the invoice list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Verify the displayed data meets the expected condition",
+                          "duration": 1
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:00:43.518Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 111,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-e3810-pected-columns-and-statuses-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-e3810-pected-columns-and-statuses-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-e3810-pected-columns-and-statuses-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-20378a5f6209e8365fa3",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 111,
+              "column": 7
+            },
+            {
+              "title": "TC-06 Cancelled invoices include the cancellation reason and no payment date",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 135,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6758,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the invoice list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Read all rows from the invoice list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify length meets the expected condition",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify trim meets the expected condition",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:00:49.281Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 135,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-80521--reason-and-no-payment-date-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-80521--reason-and-no-payment-date-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-80521--reason-and-no-payment-date-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-d89f5d6523fe50188bd8",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 135,
+              "column": 7
+            },
+            {
+              "title": "TC-07 Quotation list renders the expected columns",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 156,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5128,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the quotation list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify the quotation list column headers",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify the quotation list contains records",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:00:56.164Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 156,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-30786-enders-the-expected-columns-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-30786-enders-the-expected-columns-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-30786-enders-the-expected-columns-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-f4233e23d14805421311",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 156,
+              "column": 7
+            },
+            {
+              "title": "TC-08 Quotation validity window matches the configured 7-day period",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 169,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4362,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the quotation list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Read all rows from the quotation list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify length meets the expected condition",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify days meets the expected condition",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:01:01.411Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 169,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-67b93-the-configured-7-day-period-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-67b93-the-configured-7-day-period-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-67b93-the-configured-7-day-period-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-e3809b04a394e148d065",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 169,
+              "column": 7
+            },
+            {
+              "title": "TC-09 Banner definitions list is populated with row actions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                        "line": 192,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3974,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the banner definitions list",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify the banner definitions list column headers",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Verify the banner definitions list contains records",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-04T15:01:05.884Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\admin\\admin-lists.spec.ts",
+                            "line": 192,
+                            "column": 7
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-d2184--populated-with-row-actions-sayal\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-d2184--populated-with-row-actions-sayal\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-admin-admin-lists-Ad-d2184--populated-with-row-actions-sayal\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a416b78c3d84534166e0-9d3e9ec36c3487fac06c",
+              "file": "tests/admin/admin-lists.spec.ts",
+              "line": 192,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T15:00:17.852Z",
+    "duration": 52426.436,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

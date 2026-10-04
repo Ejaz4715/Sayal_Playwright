@@ -1,33 +1,49 @@
+import { logStep } from '@helpers/LogSteps';
 import { test, expect } from '@fixtures/pages.fixture';
 import { AudiencePage } from '@pages/AudiencePage';
 import { PublicQuotationPage } from '@pages/PublicQuotationPage';
 import { READONLY_FIXTURES } from '@data/testData';
 
 test.describe('Audience', () => {
-  test('SAYAL-AUD-001 empty state guides the user to create @P1', async ({ authedPage }) => {
+  test('TC-01 Empty state guides the user to create', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
+
+    await logStep('Step 01: Open the audience page');
     const audience = new AudiencePage(authedPage);
     await audience.open();
 
+    await logStep('Step 02: Verify empty-state heading is visible');
     await expect(audience.emptyStateHeading).toBeVisible();
+
+    await logStep('Step 03: Verify empty-state call to action is visible');
     await expect(audience.emptyStateCta).toBeVisible();
+
+    await logStep('Step 04: Verify create button is visible');
     await expect(audience.createButton).toBeVisible();
   });
 
-  test('SAYAL-GAP-011 the builder offers the active targeting filters @P1', async ({
+  test('TC-02 The builder offers the active targeting filters', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({
     authedPage,
   }) => {
+
+    await logStep('Step 01: Open the audience builder');
     const audience = new AudiencePage(authedPage);
     await audience.openBuilder();
 
+    await logStep('Step 02: Verify name field is visible');
     await expect(audience.nameField).toBeVisible();
+
+    await logStep('Step 03: Verify description field is visible');
     await expect(audience.descriptionField).toBeVisible();
 
+    await logStep('Step 04: Verify the filter option is available in the audience builder');
     for (const filter of AudiencePage.BUILDER_FILTERS) {
       await audience.expectFilterOffered(filter);
     }
   });
 
-  test('the builder requests the active filter set for its platform @P2', async ({ authedPage }) => {
+  test('TC-03 The builder requests the active filter set for its platform', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
+
+    await logStep('Step 01: Open the audience builder');
     const audience = new AudiencePage(authedPage);
 
     const activeFilters = authedPage.waitForResponse(
@@ -35,29 +51,44 @@ test.describe('Audience', () => {
       { timeout: 60_000 },
     );
     await audience.openBuilder();
+
+    await logStep('Step 02: Wait for the active-filters API response');
     const response = await activeFilters;
 
+    await logStep('Step 03: Verify url meets the expected condition');
     expect(response.url()).toMatch(/get-active-filters\/\d+/);
   });
 });
 
 test.describe('Public quotation page', () => {
-  test('SAYAL-PUB-002 canonical public URL renders without a session @P0', async ({ page }) => {
+  test('TC-04 Canonical public URL renders without a session', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ page }) => {
+
+    await logStep('Step 01: Clear browser cookies to start without a session');
     /* Deliberately on a bare page: the point of this route is that it works
        with no authentication at all. */
     await page.context().clearCookies();
     const quotation = new PublicQuotationPage(page);
+
+    await logStep('Step 02: Open the public quotation using the supplied token');
     await quotation.openWithToken(READONLY_FIXTURES.quotationToken);
 
+    await logStep('Step 03: Verify the public quotation is rendered');
     await quotation.expectRendered();
+
+    await logStep('Step 04: Verify page has the expected URL');
     await expect(page).not.toHaveURL(/\/auth\/Login/);
   });
 
-  test('SAYAL-PUB-003 an invalid token does not render a quotation @P1', async ({ page }) => {
+  test('TC-05 An invalid token does not render a quotation', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ page }) => {
+
+    await logStep('Step 01: Clear browser cookies before checking the invalid token');
     await page.context().clearCookies();
     const quotation = new PublicQuotationPage(page);
+
+    await logStep('Step 02: Open the public quotation using the supplied token');
     await quotation.openWithToken('INVALID123');
 
+    await logStep('Step 03: Verify client info tab is hidden');
     await expect(
       quotation.clientInfoTab,
       'an unknown token must not render client data',

@@ -1,3 +1,4 @@
+import { logStep } from '@helpers/LogSteps';
 import { test as setup, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -24,27 +25,40 @@ import { ADMIN_STORAGE_STATE } from '@data/authState';
  * only authenticates when it has genuinely expired. Verification is a plain
  * GET, which the limiter does not count.
  */
-setup('authenticate as admin', async ({ browser }) => {
-  setup.setTimeout(180_000);
+setup(
+  'Pre-condition [Authenticate as admin]',
+  { annotation: [{ product: 'Sayal', type: 'non-critical' }] as any },
+  async ({ browser }) => {
 
-  if (await storedSessionIsValid(browser)) {
-    setup.info().annotations.push({
-      type: 'note',
-      description: 'Reused the stored admin session; no login attempt spent.',
-    });
-    return;
-  }
+    await logStep('Step 01: Check whether the saved admin session is still valid');
+    setup.setTimeout(180_000);
 
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  const login = new LoginPage(page);
-  await login.login();
-  await new AppShell(page).expectAuthenticatedAs(ADMIN_USER.name);
+    if (await storedSessionIsValid(browser)) {
 
-  fs.mkdirSync(path.dirname(ADMIN_STORAGE_STATE), { recursive: true });
-  await context.storageState({ path: ADMIN_STORAGE_STATE });
-  await context.close();
-});
+      await logStep('Step 02: Reuse the valid session without another login attempt');
+      setup.info().annotations.push({
+        type: 'note',
+        description: 'Reused the stored admin session; no login attempt spent.',
+      });
+      return;
+    }
+
+    await logStep('Step 02: Sign in with admin credentials after the saved session expires');
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    const login = new LoginPage(page);
+    await login.login();
+
+    await logStep('Step 03: Verify the authenticated admin session');
+    await new AppShell(page).expectAuthenticatedAs(ADMIN_USER.name);
+
+    fs.mkdirSync(path.dirname(ADMIN_STORAGE_STATE), { recursive: true });
+
+    await logStep('Step 04: Save the authenticated browser state for later tests');
+    await context.storageState({ path: ADMIN_STORAGE_STATE });
+    await context.close();
+  },
+);
 
 /**
  * Load the stored state and confirm it still opens a protected route.

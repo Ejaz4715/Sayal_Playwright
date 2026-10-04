@@ -57,6 +57,9 @@ export class AppShell {
     return this.page.getByText('الملف الشخصي', { exact: true }).first();
   }
 
+  get profileIcon (): Locator {
+    return this.page.locator("//div[@aria-haspopup='menu']").nth(1);
+  }
   get logoutLink(): Locator {
     return this.page.getByText('تسجيل الخروج', { exact: true }).first();
   }
@@ -64,6 +67,8 @@ export class AppShell {
   get languageToggle(): Locator {
     return this.page.getByText('English', { exact: true }).first();
   }
+
+
 
   /**
    * How long the shell may take to hydrate.
@@ -112,7 +117,7 @@ export class AppShell {
    * logout behaviours — token teardown, redirect, back-navigation safety —
    * remain testable instead of being blocked by an unrelated UI defect.
    */
-  async logout(): Promise<void> {
+  async logoutByDispatchEvent(): Promise<void> {
     await expect(this.logoutLink).toBeVisible();
     await this.logoutLink.dispatchEvent('click');
   }
@@ -121,8 +126,9 @@ export class AppShell {
    * Attempt logout the way a user would. Expected to fail while ISS-30 stands —
    * used only by the known-defect test.
    */
-  async logoutByRealClick(timeout = 8000): Promise<void> {
-    await this.logoutLink.click({ timeout });
+  async logout(timeout = 8000): Promise<void> {
+    await this.profileIcon.click({ timeout : timeout });
+    await this.logoutLink.click({ timeout : timeout });
   }
 
   /** The overlay behind ISS-30. Exposed so the defect test can assert on it. */
