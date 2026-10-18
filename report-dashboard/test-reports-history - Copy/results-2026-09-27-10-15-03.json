@@ -1,0 +1,122 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "-g",
+      "TC-06 Register Interest routes with the project pre-selected"
+    ],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      }
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          }
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+        "testIgnore": [
+          "/tests[\\\\/]e2e-scenarios[\\\\/]test-suits-e2e[\\\\/](?!(?:moh-land|auction|offplan-moh-land|offplan-private-land)-booking-journey-suit\\.spec\\.ts$|mega-project-suit\\.spec\\.ts$|payment-tracking-(?:completion-percentage|specified-period)-suit\\.spec\\.ts$)/"
+        ],
+        "testMatch": ["tests/**/*.spec.{js,ts}", "e2e-scenarios/tests/**/*.spec.{js,ts}"],
+        "timeout": 480000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      ["list", null],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-09-27-10-15-03.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "SyntaxError: D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\ProjectPage.ts: Unexpected token, expected \"(\" (146:12)\n\n\u001b[0m \u001b[90m 144 |\u001b[39m   }\n \u001b[90m 145 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36masync\u001b[39m clickRegisterInterestButton(){\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mregisterInterestButton\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(button)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m90\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m",
+      "stack": "SyntaxError: D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\ProjectPage.ts: Unexpected token, expected \"(\" (146:12)\n\n\u001b[0m \u001b[90m 144 |\u001b[39m   }\n \u001b[90m 145 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36masync\u001b[39m clickRegisterInterestButton(){\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mregisterInterestButton\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(button)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m90\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m\n    at Object.<anonymous> (D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\project\\project-and-units.spec.ts:3:1)",
+      "location": {
+        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\project\\project-and-units.spec.ts",
+        "line": 146,
+        "column": 12
+      },
+      "snippet": "\u001b[90m   at \u001b[39mtests\\project\\project-and-units.spec.ts:146\n\n\u001b[0m\u001b[0m"
+    },
+    {
+      "message": "SyntaxError: D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\ProjectPage.ts: Unexpected token, expected \"(\" (146:12)\n\n\u001b[0m \u001b[90m 144 |\u001b[39m   }\n \u001b[90m 145 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36masync\u001b[39m clickRegisterInterestButton(){\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mregisterInterestButton\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(button)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m90\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m",
+      "stack": "SyntaxError: D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\ProjectPage.ts: Unexpected token, expected \"(\" (146:12)\n\n\u001b[0m \u001b[90m 144 |\u001b[39m   }\n \u001b[90m 145 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m \u001b[36masync\u001b[39m \u001b[36masync\u001b[39m clickRegisterInterestButton(){\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[36mconst\u001b[39m button \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mregisterInterestButton\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(button)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m90\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m     \u001b[36mawait\u001b[39m button\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m\n    at Object.<anonymous> (D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\project\\project-detail.spec.ts:2:1)",
+      "location": {
+        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\project\\project-detail.spec.ts",
+        "line": 146,
+        "column": 12
+      },
+      "snippet": "\u001b[90m   at \u001b[39mtests\\project\\project-detail.spec.ts:146\n\n\u001b[0m \u001b[90m 144 |\u001b[39m       )\n \u001b[90m 145 |\u001b[39m       \u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m200\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m\n \u001b[90m 148 |\u001b[39m   test(\u001b[32m'TC-10 Project is publicly viewable without a session'\u001b[39m\u001b[33m,\u001b[39m { annotation\u001b[33m:\u001b[39m [{ product\u001b[33m:\u001b[39m \u001b[32m'Marketplace'\u001b[39m\u001b[33m,\u001b[39m type\u001b[33m:\u001b[39m \u001b[32m'non-critical'\u001b[39m } \u001b[36mas\u001b[39m any] }\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page\u001b[33m,\u001b[39m header }) \u001b[33m=>\u001b[39m {\n \u001b[90m 149 |\u001b[39m     \u001b[36mconst\u001b[39m project \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mProjectPage\u001b[39m(page\u001b[33m,\u001b[39m \u001b[33mPROJECTS\u001b[39m\u001b[33m.\u001b[39mbookable)\u001b[33m;\u001b[39m\u001b[0m"
+    },
+    {
+      "message": "Error: No tests found",
+      "stack": "Error: No tests found"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-09-27T10:15:03.196Z",
+    "duration": 399.3020000000001,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

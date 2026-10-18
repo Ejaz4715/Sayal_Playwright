@@ -1,0 +1,2075 @@
+{
+  "config": {
+    "argv": ["C:\\Program Files\\nodejs\\node.exe", "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\node_modules\\@playwright\\test\\cli.js", "test", "tests/account", "--list"],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      }
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          }
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+        "testIgnore": [
+          "/tests[\\\\/]e2e-scenarios[\\\\/]test-suits-e2e[\\\\/](?!(?:moh-land|auction|offplan-moh-land|offplan-private-land)-booking-journey-suit\\.spec\\.ts$|mega-project-suit\\.spec\\.ts$|payment-tracking-(?:completion-percentage|specified-period)-suit\\.spec\\.ts$)/"
+        ],
+        "testMatch": ["tests/**/*.spec.{js,ts}", "e2e-scenarios/tests/**/*.spec.{js,ts}"],
+        "timeout": 480000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      ["list", null],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-09-21-10-05-17.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\account\\activities-detail.spec.ts",
+      "file": "tests/account/activities-detail.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Activities - module specifics",
+          "file": "tests/account/activities-detail.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 Purchased deals shows its empty state and marketplace CTA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 9,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-b42de7476f54921a32b3",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "TC-02 Waiting list shows its own empty-state wording",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 26,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-669a394c692346532f5b",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "TC-03 Certified contractors reports no active contractors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 44,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-3799c7def0b6afddf92e",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 44,
+              "column": 7
+            },
+            {
+              "title": "TC-04 Conveyance shows its empty state and a create action",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 60,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-f00dfb04e06e004a9421",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 60,
+              "column": 7
+            },
+            {
+              "title": "TC-05 Conveyance exposes an outcome tab per review state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 77,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-e64bdfaf104880e8e773",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 77,
+              "column": 7
+            },
+            {
+              "title": "TC-06 Online lending offers the start action",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 93,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-8bce878a9c9a39b464b5",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "TC-07 My auctions separates active from closed",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 104,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-6ab658f0abce463e084b",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 104,
+              "column": 7
+            },
+            {
+              "title": "TC-08 Farz certificates shows its empty state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 117,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-079af56a5ccab4f96765",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 117,
+              "column": 7
+            },
+            {
+              "title": "TC-09 Farz certificates exposes lifecycle tabs",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 131,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-57b9235289c75f5949e7",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 131,
+              "column": 7
+            },
+            {
+              "title": "TC-10 Unit delivery shows its empty state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 144,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-f92888c092517bc3b60a",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 144,
+              "column": 7
+            },
+            {
+              "title": "TC-11 Unit delivery separates developer acceptance from beneficiary",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 158,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-49c9d8224c14b94019d3",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 158,
+              "column": 7
+            },
+            {
+              "title": "TC-12 Rental requests shows its empty state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 173,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-4c3b9dbeb14f78100c5d",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 173,
+              "column": 7
+            },
+            {
+              "title": "TC-13 Rental requests exposes an Incomplete resume state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 187,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-7ac738a4b9fbdb1fe511",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 187,
+              "column": 7
+            },
+            {
+              "title": "TC-14 Resale requests offers both Sell and Buy sides",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 202,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-b012b0bd037dab1842fb",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 202,
+              "column": 7
+            },
+            {
+              "title": "TC-15 Resale requests exposes its full status lifecycle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 217,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-03a4df1a1d479afaa8d7",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 217,
+              "column": 7
+            },
+            {
+              "title": "TC-16 The tax service offers both request and inquiry modes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 232,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-6312ce22aa35847b851a",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 232,
+              "column": 7
+            },
+            {
+              "title": "TC-16 Financial applications renders its status banner",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 247,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-5eb4beea06fe41ffcb48",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 247,
+              "column": 7
+            },
+            {
+              "title": "TC-17 Housing design requests expose lifecycle tabs",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-detail.spec.ts",
+                        "line": 263,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "584512e919855bf7ff49-cd58e0eaa25593084c3b",
+              "file": "tests/account/activities-detail.spec.ts",
+              "line": 263,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests\\account\\activities-modules.spec.ts",
+      "file": "tests/account/activities-modules.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Account - activities modules",
+          "file": "tests/account/activities-modules.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 financial-applications Financial applications loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-b23e19dd032d070611d5",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 purchase-deals Purchased deals loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-ff931c9dd10ae83ae703",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 waiting-list Waiting list management loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-37db4b1a33986e18c149",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 housing-designs Housing designs loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-1d475ce18866dd81f84c",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 vat-exemption Real estate tax incurred service loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-09c50fefc509f1b83d16",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 certified-contractors Certified contractor services loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-58774515e2818b60873c",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 conveyance Conveyance service loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-1fa4e0b2cacc63d26604",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 online-lending Online lending requests loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-c5d1d1aa6aa7caab8a8c",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 auctions My auctions loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-a42a70f3233d5020af84",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 farz-certificates Farz Certificate loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-a8cefb61da4c5d52af96",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 units-delivery Units Delivery loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-6662222aa5d738589f34",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 rental-requests Rental requests loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-f5c33f4761cdc6ad90bd",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-01 resale-requests Resale Requests loads with its tabs and state",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 8,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-879a91dcf6f48cf8a783",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "TC-02 Activities modules are not reachable when logged out",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 45,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-469d42a943a65465de9b",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "TC-03 Selected tab survives a reload",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\activities-modules.spec.ts",
+                        "line": 58,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1e0ce6d33d705980a81a-c78ce9818620088e5b2b",
+              "file": "tests/account/activities-modules.spec.ts",
+              "line": 58,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests\\account\\my-bookings-depth.spec.ts",
+      "file": "tests/account/my-bookings-depth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "My bookings - depth",
+          "file": "tests/account/my-bookings-depth.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 The Cancelled tab lists only cancelled bookings",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 6,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-c2b80893995ba20b4e62",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "TC-02 The Completed tab renders",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 25,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-768673e70556e48c3956",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "TC-03 The Unpaid tab renders",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 39,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-3e22c6ccb7fb4e446a95",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 39,
+              "column": 7
+            },
+            {
+              "title": "TC-04 The Ready to sign tab renders",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 53,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-0e014161127d68957eec",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 53,
+              "column": 7
+            },
+            {
+              "title": "TC-05 The All tab is a superset of the Active tab",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 67,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-ef964d39c6f270d21877",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "TC-06 Booking card carries its identifying fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 86,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-59061a3211712201dc49",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 86,
+              "column": 7
+            },
+            {
+              "title": "TC-07 View details opens the matching booking",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 105,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-c74d73ab81e92239fbb9",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 105,
+              "column": 7
+            },
+            {
+              "title": "TC-08 Returning from a booking keeps the listing usable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 126,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-ab9e3423b46e5055174b",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 126,
+              "column": 7
+            },
+            {
+              "title": "TC-09 Every status tab is present",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings-depth.spec.ts",
+                        "line": 147,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c7614712cf18f719141b-bc94395fee25c3bf2a28",
+              "file": "tests/account/my-bookings-depth.spec.ts",
+              "line": 147,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests\\account\\my-bookings.spec.ts",
+      "file": "tests/account/my-bookings.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Account - my bookings",
+          "file": "tests/account/my-bookings.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 My bookings lists bookings under status tabs",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings.spec.ts",
+                        "line": 8,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0ad4fb477914b0674a4c-f2f277b8314bacd3f1f7",
+              "file": "tests/account/my-bookings.spec.ts",
+              "line": 8,
+              "column": 7
+            },
+            {
+              "title": "TC-02 The Active tab filters to active bookings",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings.spec.ts",
+                        "line": 30,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0ad4fb477914b0674a4c-85f4d934a5dd4e42b440",
+              "file": "tests/account/my-bookings.spec.ts",
+              "line": 30,
+              "column": 7
+            },
+            {
+              "title": "TC-03 A booking can be opened from the listing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings.spec.ts",
+                        "line": 46,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0ad4fb477914b0674a4c-f03501b2137182b04841",
+              "file": "tests/account/my-bookings.spec.ts",
+              "line": 46,
+              "column": 7
+            },
+            {
+              "title": "TC-04 Account menu exposes every portal area",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\my-bookings.spec.ts",
+                        "line": 63,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0ad4fb477914b0674a4c-ceba05f51dd5b98d3ebd",
+              "file": "tests/account/my-bookings.spec.ts",
+              "line": 63,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests\\account\\user-profile.spec.ts",
+      "file": "tests/account/user-profile.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Account - profile page",
+          "file": "tests/account/user-profile.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 Dashboard renders for the authenticated user",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 7,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-5eec1f6d1df8b20ad1d1",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 7,
+              "column": 7
+            },
+            {
+              "title": "TC-02 User profile sidebar exposes every top-level area",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 20,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-d9d29e240998bf714700",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "TC-03 My information shows the user profile and its actions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 44,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-edf5d39a847267d4e6b9",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 44,
+              "column": 7
+            },
+            {
+              "title": "TC-04 User national ID is not exposed in full",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 58,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-1ab13c586c7445a181a3",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 58,
+              "column": 7
+            },
+            {
+              "title": "TC-05 Wallet shows a balance and both tabs (Balance & Transactions, Bank account)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 69,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-25ee5865d4d0ead62c79",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 69,
+              "column": 7
+            },
+            {
+              "title": "TC-06 Wallet transactions list renders correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 83,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-a24ab2aff30b5233e8b1",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 83,
+              "column": 7
+            },
+            {
+              "title": "TC-07 The bank account tab opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 95,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-9e3d3551b2541659272f",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 95,
+              "column": 7
+            },
+            {
+              "title": "TC-08 Financial advisory shows the profile and both tabs (Overview, Financing Requests)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 110,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-77ce9f0d40699ad713ab",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 110,
+              "column": 7
+            },
+            {
+              "title": "TC-09 Financing requests tab opens",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 126,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-6ec161df01c40935f277",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 126,
+              "column": 7
+            },
+            {
+              "title": "TC-10 Payments page exposes all four status tabs (All, Unpaid, Paid, Cancelled)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 139,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-19c48ec28dd29b75b45b",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 139,
+              "column": 7
+            },
+            {
+              "title": "TC-11 An invoice can be previewed from the payments list",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 151,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-b639b264eb0e9ffd9ec9",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 151,
+              "column": 7
+            },
+            {
+              "title": "TC-12 Pagination controls are disabled on the first page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 168,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-b043b6a7e7ad472d150a",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 168,
+              "column": 7
+            },
+            {
+              "title": "TC-13 Favorites exposes all five category tabs (All, Destinations, Projects, Units, Services)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 185,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-548b5704f77b6f2c8371",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 185,
+              "column": 7
+            },
+            {
+              "title": "TC-14 Registered interests exposes all five tabs (All, Destinations, Projects, Developers, Brokers)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 197,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-495396983e12d8d81c97",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 197,
+              "column": 7
+            },
+            {
+              "title": "TC-15 Registered interests shows its empty state with a CTA",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 209,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-d0de8caef884388cbd18",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 209,
+              "column": 7
+            },
+            {
+              "title": "TC-16 Profile routes redirect to login page when logged out",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 480000,
+                  "annotations": [
+                    {
+                      "product": "Marketplace",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-profile.spec.ts",
+                        "line": 221,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5355b7f90ec06db3c67f-d8ca39257585a8f93017",
+              "file": "tests/account/user-profile.spec.ts",
+              "line": 221,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests\\account\\user-wallet.spec.ts",
+      "file": "tests/account/user-wallet.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TC-01 Withdraw funds from wallet",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 480000,
+              "annotations": [
+                {
+                  "product": "Marketplace",
+                  "type": "critical",
+                  "location": {
+                    "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\account\\user-wallet.spec.ts",
+                    "line": 13,
+                    "column": 1
+                  }
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "6f7894b0742c3a8d0188-90a030c76ccd2a436f01",
+          "file": "tests/account/user-wallet.spec.ts",
+          "line": 13,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-21T10:05:17.557Z",
+    "duration": 380.147,
+    "expected": 0,
+    "skipped": 63,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -16,15 +16,19 @@
     "merge-results": "node report-dashboard/merge-results.js",
     "generate-report": "node report-dashboard/generate-dashboard.js",
     "open-report": "open-cli report-dashboard/dashboard.html",
-    "post-test": "npm run merge-results && npm run generate-report && npm run open-report"
+    "post-test": "npm run merge-results && npm run generate-report && npm run open-report",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.1.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
     "mkdirp": "^3.0.1",
     "open-cli": "^9.0.0",
+    "prettier": "^3.9.10",
     "rimraf": "^6.1.3",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
@@ -35,5 +39,10 @@
     "exceljs": "^3.4.0",
     "playwright": "^1.63.0",
     "xlsx": "^0.18.5"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,json,css,md}": [
+      "prettier --write"
+    ]
   }
 }

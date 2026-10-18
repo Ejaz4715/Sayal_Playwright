@@ -1,26 +1,54 @@
 import fs from 'fs';
 import path from 'path';
 
-const dataFilePath = path.resolve(process.cwd(), 'src/data/test-data.json');
-
 export class DataHelper {
   /**
-   * Reads fresh JSON data from disk
+   * Resolves the full file path given a relative or absolute file name/path
    */
-  static readData(): any {
-    const rawData = fs.readFileSync(dataFilePath, 'utf-8');
-    return JSON.parse(rawData);
+  private static getFilePath(fileName: string): string {
+    const jsonFileName = fileName.endsWith('.json') ? fileName : `${fileName}.json`;
+    return path.isAbsolute(jsonFileName) ? jsonFileName : path.resolve(process.cwd(), 'src/data', jsonFileName);
   }
 
   /**
-   * Updates an existing key or creates a new key-value pair in test-data.json
-   * 
-   * @param serviceName - Target service (e.g., 'login', 'booking')
-   * @param key - Field key to update or insert
-   * @param value - New value to set
+   * Reads fresh JSON data from disk
    */
-  static updateServiceData(serviceName: string, key: string, value: any): void {
-    const currentData = this.readData();
+  static readData(fileName: string = 'test-data.json'): any {
+    const filePath = this.getFilePath(fileName);
+    if (!fs.existsSync(filePath)) {
+      return {};
+    }
+    const rawData = fs.readFileSync(filePath, 'utf-8');
+    return rawData.trim() ? JSON.parse(rawData) : {};
+  }
+
+  // =========================================================================
+  // Overload Signatures (Declares allowed method signatures for Intellisense)
+  // =========================================================================
+
+  /** Updates key-value pair in default 'test-data.json' */
+  static updateServiceData(serviceName: string, key: string, value: any): void;
+
+  /** Updates key-value pair in a specific JSON file */
+  static updateServiceData(fileName: string, serviceName: string, key: string, value: any): void;
+
+  // =========================================================================
+  // Implementation Signature (Handles both signature calls)
+  // =========================================================================
+  static updateServiceData(...args: any[]): void {
+    let fileName = 'test-data.json';
+    let serviceName: string;
+    let key: string;
+    let value: any;
+
+    if (args.length === 4) {
+      [fileName, serviceName, key, value] = args;
+    } else {
+      [serviceName, key, value] = args;
+    }
+
+    const filePath = this.getFilePath(fileName);
+    const currentData = this.readData(fileName);
 
     // Ensure the services block exists
     if (!currentData.services) {
@@ -32,10 +60,10 @@ export class DataHelper {
       currentData.services[serviceName] = {};
     }
 
-    // Updates value if key exists, or creates a new key-value pair if absent
+    // Update or insert value
     currentData.services[serviceName][key] = value;
 
-    // Write updated JSON back to disk with formatted 2-space indentation
-    fs.writeFileSync(dataFilePath, JSON.stringify(currentData, null, 2), 'utf-8');
+    // Write back to disk
+    fs.writeFileSync(filePath, JSON.stringify(currentData, null, 2), 'utf-8');
   }
 }

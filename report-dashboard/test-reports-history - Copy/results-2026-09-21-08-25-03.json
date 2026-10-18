@@ -1,0 +1,238 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "-g",
+      "TC-01 Add new electronic auction project"
+    ],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+        "testIgnore": [
+          "/tests[\\\\/]e2e-scenarios[\\\\/]test-suits-e2e[\\\\/](?!(?:moh-land|auction|offplan-moh-land|offplan-private-land)-booking-journey-suit\\.spec\\.ts$|mega-project-suit\\.spec\\.ts$|payment-tracking-(?:completion-percentage|specified-period)-suit\\.spec\\.ts$)/"
+        ],
+        "testMatch": ["tests/**/*.spec.{js,ts}", "e2e-scenarios/tests/**/*.spec.{js,ts}"],
+        "timeout": 480000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      ["list", null],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-09-21-08-25-03.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts",
+      "file": "tests/test-suits-e2e/auction-booking-journey-suit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Auction booking journey",
+          "file": "tests/test-suits-e2e/auction-booking-journey-suit.spec.ts",
+          "line": 61,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 Add new electronic auction project",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Gov Support",
+                      "type": "critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts",
+                        "line": 62,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 12986,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: locator('a').filter({ hasText: 'المزادات' }) resolved to 2 elements:\n    1) <a _ngcontent-ng-c2050845362=\"\" class=\"menu-item cursor-pointer\">…</a> aka locator('a').filter({ hasText: /^المزادات$/ })\n    2) <a role=\"tab\" ngbnavlink=\"\" tabindex=\"-1\" id=\"ngb-nav-4\" aria-selected=\"false\" aria-disabled=\"false\" _ngcontent-ng-c2976306354=\"\" class=\"nav-link border-0 mr-0\" href=\"/auctions/bidders-bank-accounts\" routerlink=\"/auctions/bidders-bank-accounts\">الحسابات البنكية للمشاركين في المزادات</a> aka getByRole('tab', { name: 'الحسابات البنكية للمشاركين في المزادات' })\n\nCall log:\n\u001b[2m  - waiting for locator('a').filter({ hasText: 'المزادات' })\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: locator('a').filter({ hasText: 'المزادات' }) resolved to 2 elements:\n    1) <a _ngcontent-ng-c2050845362=\"\" class=\"menu-item cursor-pointer\">…</a> aka locator('a').filter({ hasText: /^المزادات$/ })\n    2) <a role=\"tab\" ngbnavlink=\"\" tabindex=\"-1\" id=\"ngb-nav-4\" aria-selected=\"false\" aria-disabled=\"false\" _ngcontent-ng-c2976306354=\"\" class=\"nav-link border-0 mr-0\" href=\"/auctions/bidders-bank-accounts\" routerlink=\"/auctions/bidders-bank-accounts\">الحسابات البنكية للمشاركين في المزادات</a> aka getByRole('tab', { name: 'الحسابات البنكية للمشاركين في المزادات' })\n\nCall log:\n\u001b[2m  - waiting for locator('a').filter({ hasText: 'المزادات' })\u001b[22m\n\n    at AdminProjectPage.openAuctionCreation (D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\AdminProjectPage.ts:36:66)\n    at D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts:126:32",
+                        "location": {
+                          "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\AdminProjectPage.ts",
+                          "column": 66,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msrc\\pages\\AdminProjectPage.ts:36\n\n\u001b[0m \u001b[90m 34 |\u001b[39m\n \u001b[90m 35 |\u001b[39m   \u001b[36masync\u001b[39m openAuctionCreation() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m\"a\"\u001b[39m)\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m\"المزادات\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"link\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"مشاريع المزاد\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"مشروع مزاد جديد\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   }\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\AdminProjectPage.ts",
+                            "column": 66,
+                            "line": 36
+                          },
+                          "message": "Error: locator.click: Error: strict mode violation: locator('a').filter({ hasText: 'المزادات' }) resolved to 2 elements:\n    1) <a _ngcontent-ng-c2050845362=\"\" class=\"menu-item cursor-pointer\">…</a> aka locator('a').filter({ hasText: /^المزادات$/ })\n    2) <a role=\"tab\" ngbnavlink=\"\" tabindex=\"-1\" id=\"ngb-nav-4\" aria-selected=\"false\" aria-disabled=\"false\" _ngcontent-ng-c2976306354=\"\" class=\"nav-link border-0 mr-0\" href=\"/auctions/bidders-bank-accounts\" routerlink=\"/auctions/bidders-bank-accounts\">الحسابات البنكية للمشاركين في المزادات</a> aka getByRole('tab', { name: 'الحسابات البنكية للمشاركين في المزادات' })\n\nCall log:\n\u001b[2m  - waiting for locator('a').filter({ hasText: 'المزادات' })\u001b[22m\n\n\n\u001b[90m   at \u001b[39msrc\\pages\\AdminProjectPage.ts:36\n\n\u001b[0m \u001b[90m 34 |\u001b[39m\n \u001b[90m 35 |\u001b[39m   \u001b[36masync\u001b[39m openAuctionCreation() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mlocator(\u001b[32m\"a\"\u001b[39m)\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m\"المزادات\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"link\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"مشاريع المزاد\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"مشروع مزاد جديد\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m   }\u001b[0m\n\u001b[2m    at AdminProjectPage.openAuctionCreation (D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\AdminProjectPage.ts:36:66)\u001b[22m\n\u001b[2m    at D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts:126:32\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Define auction start/end date and time",
+                          "duration": 2
+                        },
+                        {
+                          "title": "Step 02: Write the auction start and end dates and times to the Auction_Units.xlsx file",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Login to admin portal",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 04: Navigate to the auction project creation page",
+                          "duration": 3989
+                        },
+                        {
+                          "title": "Step 04: Navigate to the auction project creation page",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-09-21T08:25:03.901Z",
+                      "annotations": [
+                        {
+                          "product": "Gov Support",
+                          "type": "critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts",
+                            "line": 62,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\test-results\\tests-test-suits-e2e-aucti-55f34--electronic-auction-project-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\test-results\\tests-test-suits-e2e-aucti-55f34--electronic-auction-project-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\test-results\\tests-test-suits-e2e-aucti-55f34--electronic-auction-project-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\test-results\\tests-test-suits-e2e-aucti-55f34--electronic-auction-project-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\src\\pages\\AdminProjectPage.ts",
+                        "column": 66,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2754022a5528ab49af92-b8e3154ed6e8e59d7efb",
+              "file": "tests/test-suits-e2e/auction-booking-journey-suit.spec.ts",
+              "line": 62,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-21T08:25:03.161Z",
+    "duration": 14573.627,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

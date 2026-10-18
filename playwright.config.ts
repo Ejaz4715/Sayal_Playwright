@@ -4,38 +4,16 @@ import { ADMIN_STORAGE_STATE } from './src/data/authState';
 
 dotenv.config();
 
-/**
- * Playwright configuration for the Sayal campaign platform (pre-production).
- *
- * Two environment facts drive most of what follows, both established during
- * exploration rather than assumed:
- *
- *  1. `pre-sayal.housingapps.sa` resolves only on the corporate network
- *     (split-horizon DNS → 10.200.1.206). Public resolvers return NXDOMAIN by
- *     design, so a DNS failure here means "off VPN", not "environment down".
- *
- *  2. The app is a Next.js SPA whose `load` event never settles, so navigation
- *     uses `commit` and each page object waits on its own readiness element.
- *     `networkidle` is deliberately never used as a readiness strategy.
- */
 const timestamp = new Date().toISOString().replace(/[:T]/g, '-').replace(/\..+/, '');
 
 export default defineConfig({
-  testMatch: [
-    'tests/**/*.spec.{js,ts}',
-    'e2e-scenarios/tests/**/*.spec.{js,ts}'
-  ],
+  testMatch: ['tests/**/*.spec.{js,ts}', 'e2e-scenarios/tests/**/*.spec.{js,ts}'],
 
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: 0,
   workers: 1,
-  reporter: [
-    ['html', { open: 'never' }],
-    ['list'],
-    ['json', { outputFile: 'test-results/results.json' }],
-    ['json', { outputFile: `report-dashboard/test-reports-history/results-${timestamp}.json` }]
-  ],
+  reporter: [['html', { open: 'never' }], ['list'], ['json', { outputFile: 'test-results/results.json' }], ['json', { outputFile: `report-dashboard/test-reports-history/results-${timestamp}.json` }]],
   metadata: {
     // Default fallback environment
     environment: process.env.TEST_ENV || 'Pre-Prod',
@@ -45,7 +23,7 @@ export default defineConfig({
       Sakani: process.env.MARKETPLACE_ENV || 'Pre-Prod',
       Digitar: process.env.DIGITAR_ENV || 'STG',
       Sayal: process.env.SAYAL_ENV || 'Pre-Prod',
-    }
+    },
   },
 
   timeout: 180_000,
@@ -66,7 +44,7 @@ export default defineConfig({
       args: ['--start-maximized', '--disable-http2'],
     },
     headless: false,
-    permissions: ["geolocation"],
+    permissions: ['geolocation'],
     geolocation: { latitude: 24.7136, longitude: 46.6753 },
   },
 
@@ -81,7 +59,7 @@ export default defineConfig({
       name: 'setup',
       testMatch: /auth\.setup\.ts/,
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices['Desktop Chrome'],
         viewport: null,
         deviceScaleFactor: undefined,
       },
@@ -91,18 +69,9 @@ export default defineConfig({
     {
       name: 'sayal',
       dependencies: ['setup'],
-      testIgnore: [
-        /auth\.setup\.ts/,
-        /auth[\\/]authentication-and-logout-journey\.spec\.ts/,
-        /auth-negative\.spec\.ts/,
-      ],
-      // use: {
-      //   ...devices['Desktop Chrome'],
-      //   viewport: { width: 1440, height: 900 },
-      //   storageState: ADMIN_STORAGE_STATE,
-      // },
+      testIgnore: [/auth\.setup\.ts/, /auth[\\/]authentication-and-logout-journey\.spec\.ts/, /auth-negative\.spec\.ts/],
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices['Desktop Chrome'],
         viewport: null,
         deviceScaleFactor: undefined,
         storageState: ADMIN_STORAGE_STATE,
@@ -119,7 +88,7 @@ export default defineConfig({
       dependencies: ['sayal'],
       testMatch: /auth[\\/]authentication-and-logout-journey\.spec\.ts/,
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices['Desktop Chrome'],
         viewport: null,
         deviceScaleFactor: undefined,
       },
@@ -136,7 +105,7 @@ export default defineConfig({
       dependencies: ['auth-journey'],
       testMatch: /auth-negative\.spec\.ts/,
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices['Desktop Chrome'],
         viewport: null,
         deviceScaleFactor: undefined,
       },

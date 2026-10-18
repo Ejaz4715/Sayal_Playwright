@@ -1,0 +1,4122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sakani Test Automation Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    html, body {
+      overflow-y: scroll !important;
+      -ms-overflow-style: scrollbar !important;
+      scrollbar-width: auto !important;
+    }
+
+    ::-webkit-scrollbar {
+      display: block !important;
+      width: 10px !important;
+      height: 10px !important;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9 !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1 !important;
+      border-radius: 4px !important;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #166242 !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen p-6 font-sans">
+  <div class="max-w-7xl mx-auto space-y-6">
+    
+    <header class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-200 gap-4">
+      <div>
+        <h1 class="text-2xl font-bold tracking-wide" style="color: #166242;">Sakani Automation Test Dashboard</h1>
+      </div>
+
+      <!-- Product Filter Dropdown -->
+      <div class="relative inline-block text-left w-full sm:w-auto min-w-[220px]" id="productDropdownContainer">
+        <button id="productDropdownBtn" onclick="toggleDropdown('productDropdownMenu')" class="w-full bg-[#166242] hover:bg-[#125036] text-white font-semibold text-sm rounded-xl px-4 py-2 border-2 border-slate-200/60 focus:outline-none focus:ring-2 focus:ring-emerald-600/40 cursor-pointer transition-all shadow-sm flex items-center justify-between gap-2.5">
+          <div class="flex items-center gap-2 truncate">
+            <svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 6h10M3 10h8M3 14h6M3 18h4M17 6v12m0 0l-3-3m3 3l3-3"></path>
+            </svg>
+            <span class="truncate">Product: <strong id="productDropdownSelected" class="font-bold">Sayal</strong></span>
+          </div>
+          <svg class="w-3.5 h-3.5 text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div id="productDropdownMenu" class="hidden absolute left-0 right-0 w-full mt-1.5 rounded-xl shadow-lg bg-white border border-slate-200 ring-1 ring-black ring-opacity-5 z-50 overflow-hidden">
+          
+            <div onclick="selectProductOption('Sayal')" class="px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#166242] hover:text-white cursor-pointer transition-colors flex items-center justify-between">
+              <span>Sayal</span>
+            </div>
+          
+            <div onclick="selectProductOption('Gov Support')" class="px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#166242] hover:text-white cursor-pointer transition-colors flex items-center justify-between">
+              <span>Gov Support</span>
+            </div>
+          
+            <div onclick="selectProductOption('Marketplace')" class="px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#166242] hover:text-white cursor-pointer transition-colors flex items-center justify-between">
+              <span>Marketplace</span>
+            </div>
+          
+        </div>
+      </div>
+    </header>
+
+    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-sm font-bold tracking-wide" style="color: #166242;">Assessment Scope</h2>
+        <p class="text-xs text-slate-500 mt-0.5">Filter metrics by critical tests (Readiness) or full suite (Health Check)</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="btnReadiness" onclick="setExecutionMode('readiness')" class="px-5 py-2 text-xs font-bold rounded-lg transition-all border border-emerald-700 text-emerald-800 bg-white hover:bg-emerald-50 shadow-sm">
+          Readiness
+        </button>
+        <button id="btnHealthCheck" onclick="setExecutionMode('health')" class="px-5 py-2 text-xs font-bold rounded-lg transition-all border border-emerald-700 bg-[#166242] text-white shadow-sm">
+          Health Check
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <p class="text-xs font-bold text-slate-500 tracking-wider">Total Test Cases</p>
+        <p id="totalExecuted" class="text-3xl font-extrabold text-slate-900 mt-2">0</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <p class="text-xs font-bold text-emerald-600 tracking-wider">Passed</p>
+        <p id="passedCount" class="text-3xl font-extrabold text-emerald-600 mt-2">0</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <p class="text-xs font-bold text-rose-600 tracking-wider">Failed</p>
+        <p id="failedCount" class="text-3xl font-extrabold text-rose-600 mt-2">0</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+        <p class="text-xs font-bold text-amber-600 tracking-wider">Skipped</p>
+        <p id="skippedCount" class="text-3xl font-extrabold text-amber-600 mt-2">0</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+        <h2 class="text-base font-bold mb-2" style="color: #166242;">Execution Ratio</h2>
+        
+        <div class="relative flex items-center justify-center h-48">
+          <canvas id="statusChart"></canvas>
+        </div>
+
+        <div id="customLegend" class="flex items-center justify-center gap-6 mt-4 pt-3 border-t border-slate-100"></div>
+      </div>
+
+      <div class="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col justify-between">
+        <h2 class="text-base font-bold mb-4" style="color: #166242;">Test Run Information</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          
+          <div class="sm:col-span-2 bg-slate-50 p-4 rounded-lg border border-slate-200 h-auto">
+            <p class="text-slate-500 text-xs font-bold">Suites Scope</p>
+            <p id="suitesScopeValue" class="font-semibold text-slate-800 mt-1 leading-relaxed break-words">-</p>
+          </div>
+
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <p class="text-slate-500 text-xs font-bold">Product Scope</p>
+            <p id="productScopeValue" class="font-semibold text-slate-800 mt-1">-</p>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <p class="text-slate-500 text-xs font-bold">Environment</p>
+            <p id="environmentValue" class="font-semibold text-slate-800 mt-1">Pre-Prod</p>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <p class="text-slate-500 text-xs font-bold">Total Duration</p>
+            <p id="tagDurationValue" class="font-semibold text-indigo-600 mt-1">0s</p>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+            <p class="text-slate-500 text-xs font-bold">Report Generated At</p>
+            <p class="font-semibold text-slate-800 mt-1">10/6/2026, 1:29:11 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-100">
+        <h2 class="text-base font-bold" style="color: #166242;">Test Cases (<span id="tableTagTitle">-</span>)</h2>
+        
+        <!-- Status Filter Dropdown -->
+        <div class="relative inline-block text-left w-full sm:w-auto min-w-[180px]" id="statusDropdownContainer">
+          <button id="statusDropdownBtn" onclick="toggleDropdown('statusDropdownMenu')" class="w-full bg-[#166242] hover:bg-[#125036] text-white font-semibold text-sm rounded-xl px-4 py-2 border-2 border-slate-200/60 focus:outline-none focus:ring-2 focus:ring-emerald-600/40 cursor-pointer transition-all shadow-sm flex items-center justify-between gap-2.5">
+            <div class="flex items-center gap-2 truncate">
+              <svg class="w-4 h-4 text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 6h10M3 10h8M3 14h6M3 18h4M17 6v12m0 0l-3-3m3 3l3-3"></path>
+              </svg>
+              <span class="truncate">Status: <strong id="statusDropdownSelected" class="font-bold">All</strong></span>
+            </div>
+            <svg class="w-3.5 h-3.5 text-white shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div id="statusDropdownMenu" class="hidden absolute left-0 right-0 w-full mt-1.5 rounded-xl shadow-lg bg-white border border-slate-200 ring-1 ring-black ring-opacity-5 z-50 overflow-hidden">
+            <div onclick="selectStatusOption('all', 'All')" class="px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#166242] hover:text-white cursor-pointer transition-colors">All</div>
+            <div onclick="selectStatusOption('passed', 'Passed')" class="px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#166242] hover:text-white cursor-pointer transition-colors">Passed</div>
+            <div onclick="selectStatusOption('failed', 'Failed')" class="px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#166242] hover:text-white cursor-pointer transition-colors">Failed</div>
+            <div onclick="selectStatusOption('skipped', 'Skipped')" class="px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-[#166242] hover:text-white cursor-pointer transition-colors">Skipped</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-slate-700 table-fixed">
+          <thead class="bg-slate-100 text-slate-500 text-xs font-bold border-b border-slate-200">
+            <tr>
+              <th class="py-3 px-4 font-bold w-[25%]">Suite Name</th>
+              <th class="py-3 px-4 font-bold w-[40%]">Test Case</th>
+              <th class="py-3 px-4 font-bold w-[11%] text-center">Duration</th>
+              <th class="py-3 px-4 font-bold w-[11%] text-center">Status</th>
+              <th class="py-3 px-4 font-bold w-[13%] text-center">Test Steps</th>
+            </tr>
+          </thead>
+          <tbody id="testCasesTable" class="divide-y divide-slate-200"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const healthCheckData = {
+  "Sayal": {
+    "product": "Sayal",
+    "environment": "Pre-Prod",
+    "total": 79,
+    "passed": 76,
+    "failed": 3,
+    "skipped": 0,
+    "durationMs": 498212,
+    "suitesSet": {},
+    "specs": [
+      {
+        "id": "tc-1",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-01 User list renders the five expected columns and status badges",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7755,
+        "durationStr": "7.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the user list"
+          },
+          {
+            "title": "Step 02: Verify the user list column headers"
+          },
+          {
+            "title": "Step 03: Verify the user list contains records"
+          },
+          {
+            "title": "Step 04: Read all rows from the user list"
+          },
+          {
+            "title": "Step 05: Verify some meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-2",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-02 Filters module lists records across pages",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5762,
+        "durationStr": "5.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the filters list"
+          },
+          {
+            "title": "Step 02: Verify the filters list column headers"
+          },
+          {
+            "title": "Step 03: Verify the filters list contains records"
+          },
+          {
+            "title": "Step 04: Check the last page number in the filters list"
+          },
+          {
+            "title": "Step 05: Verify last page meets the expected condition"
+          },
+          {
+            "title": "Step 06: Read all rows from the filters list"
+          },
+          {
+            "title": "Step 07: Verify the displayed data meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-3",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-03 Platforms list renders the expected source platforms",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 4464,
+        "durationStr": "4.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the platforms list"
+          },
+          {
+            "title": "Step 02: Verify the platforms list column headers"
+          },
+          {
+            "title": "Step 03: Read all rows from the platforms list"
+          },
+          {
+            "title": "Step 04: Verify names meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-4",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-04 SMS sender list matches all registered sender identities",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6417,
+        "durationStr": "6.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the senders"
+          },
+          {
+            "title": "Step 02: Verify the senders column headers"
+          },
+          {
+            "title": "Step 03: Read all rows from the senders"
+          },
+          {
+            "title": "Step 04: Verify sort meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-5",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-05 Invoice list renders the expected columns and statuses",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5414,
+        "durationStr": "5.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the invoice list"
+          },
+          {
+            "title": "Step 02: Verify the invoice list column headers"
+          },
+          {
+            "title": "Step 03: Verify the invoice list contains records"
+          },
+          {
+            "title": "Step 04: Read all rows from the invoice list"
+          },
+          {
+            "title": "Step 05: Verify the displayed data meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-6",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-06 Cancelled invoices include the cancellation reason and no payment date",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6758,
+        "durationStr": "6.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the invoice list"
+          },
+          {
+            "title": "Step 02: Read all rows from the invoice list"
+          },
+          {
+            "title": "Step 03: Verify length meets the expected condition"
+          },
+          {
+            "title": "Step 04: Verify trim meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-7",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-07 Quotation list renders the expected columns",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5128,
+        "durationStr": "5.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the quotation list"
+          },
+          {
+            "title": "Step 02: Verify the quotation list column headers"
+          },
+          {
+            "title": "Step 03: Verify the quotation list contains records"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-8",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-08 Quotation validity window matches the configured 7-day period",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 4362,
+        "durationStr": "4.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the quotation list"
+          },
+          {
+            "title": "Step 02: Read all rows from the quotation list"
+          },
+          {
+            "title": "Step 03: Verify length meets the expected condition"
+          },
+          {
+            "title": "Step 04: Verify days meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-9",
+        "suite": "admin-lists",
+        "rawSuiteTitle": "admin-lists",
+        "title": "TC-09 Banner definitions list is populated with row actions",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 3974,
+        "durationStr": "4.0s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the banner definitions list"
+          },
+          {
+            "title": "Step 02: Verify the banner definitions list column headers"
+          },
+          {
+            "title": "Step 03: Verify the banner definitions list contains records"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-10",
+        "suite": "permissions",
+        "rawSuiteTitle": "permissions",
+        "title": "TC-01 Permissions screen exposes both tabs and the roles grid",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5431,
+        "durationStr": "5.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the permissions page"
+          },
+          {
+            "title": "Step 02: Read the column headers from the permissions page"
+          },
+          {
+            "title": "Step 03: Verify table headers meets the expected condition"
+          },
+          {
+            "title": "Step 04: Verify add role button is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-11",
+        "suite": "permissions",
+        "rawSuiteTitle": "permissions",
+        "title": "TC-02 Permission catalogue is grouped by screen",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5387,
+        "durationStr": "5.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the permissions page"
+          },
+          {
+            "title": "Step 02: Open the permissions tab"
+          },
+          {
+            "title": "Step 03: Read the column headers from the permissions page"
+          },
+          {
+            "title": "Step 04: Verify table headers meets the expected condition"
+          },
+          {
+            "title": "Step 05: Read the permission screen groups"
+          },
+          {
+            "title": "Step 06: Verify screens meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-12",
+        "suite": "permissions",
+        "rawSuiteTitle": "permissions",
+        "title": "TC-03 Every permission in the catalogue is active",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7582,
+        "durationStr": "7.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the permissions page"
+          },
+          {
+            "title": "Step 02: Open the permissions tab"
+          },
+          {
+            "title": "Step 03: Read all rows from the permissions page"
+          },
+          {
+            "title": "Step 04: Verify length meets the expected condition"
+          },
+          {
+            "title": "Step 05: Verify trim meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-13",
+        "suite": "permissions",
+        "rawSuiteTitle": "permissions",
+        "title": "TC-04 Settings load with the five governing parameters",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5117,
+        "durationStr": "5.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the general settings page"
+          },
+          {
+            "title": "Step 02: Verify expect governing values on the general settings page"
+          },
+          {
+            "title": "Step 03: Verify save button is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-14",
+        "suite": "permissions",
+        "rawSuiteTitle": "permissions",
+        "title": "TC-05 Validity fields are capped at 3 characters",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 4205,
+        "durationStr": "4.2s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the general settings page"
+          },
+          {
+            "title": "Step 02: Verify quotation validity has the expected attribute"
+          },
+          {
+            "title": "Step 03: Verify invoice validity has the expected attribute"
+          },
+          {
+            "title": "Step 04: Verify min audience count has the expected attribute"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-15",
+        "suite": "audience",
+        "rawSuiteTitle": "audience",
+        "title": "TC-01 Empty state guides the user to create",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5950,
+        "durationStr": "6.0s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the audience page"
+          },
+          {
+            "title": "Step 02: Verify empty-state heading is visible"
+          },
+          {
+            "title": "Step 03: Verify empty-state call to action is visible"
+          },
+          {
+            "title": "Step 04: Verify create button is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-16",
+        "suite": "audience",
+        "rawSuiteTitle": "audience",
+        "title": "TC-02 The builder offers the active targeting filters",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7182,
+        "durationStr": "7.2s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the audience builder"
+          },
+          {
+            "title": "Step 02: Verify name field is visible"
+          },
+          {
+            "title": "Step 03: Verify description field is visible"
+          },
+          {
+            "title": "Step 04: Verify the filter option is available in the audience builder"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-17",
+        "suite": "audience",
+        "rawSuiteTitle": "audience",
+        "title": "TC-03 The builder requests the active filter set for its platform",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 9450,
+        "durationStr": "9.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the audience builder"
+          },
+          {
+            "title": "Step 02: Wait for the active-filters API response"
+          },
+          {
+            "title": "Step 03: Verify url meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-18",
+        "suite": "audience",
+        "rawSuiteTitle": "audience",
+        "title": "TC-04 Canonical public URL renders without a session",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 2388,
+        "durationStr": "2.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Clear browser cookies to start without a session"
+          },
+          {
+            "title": "Step 02: Open the public quotation using the supplied token"
+          },
+          {
+            "title": "Step 03: Verify the public quotation is rendered"
+          },
+          {
+            "title": "Step 04: Verify page has the expected URL"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-19",
+        "suite": "audience",
+        "rawSuiteTitle": "audience",
+        "title": "TC-05 An invalid token does not render a quotation",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 1383,
+        "durationStr": "1.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Clear browser cookies before checking the invalid token"
+          },
+          {
+            "title": "Step 02: Open the public quotation using the supplied token"
+          },
+          {
+            "title": "Step 03: Verify client info tab is hidden"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-20",
+        "suite": "session",
+        "rawSuiteTitle": "session",
+        "title": "TC-01 Visiting login while authenticated redirects to the dashboard",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 4880,
+        "durationStr": "4.9s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Navigate to the requested page"
+          },
+          {
+            "title": "Step 02: Verify authenticated page has the expected URL"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-21",
+        "suite": "session",
+        "rawSuiteTitle": "session",
+        "title": "TC-02 Route guard refuses a protected route without a session",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 2843,
+        "durationStr": "2.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Navigate to the requested page"
+          },
+          {
+            "title": "Step 02: Evaluate the current browser or form state"
+          },
+          {
+            "title": "Step 03: Clear cookies from the browser context"
+          },
+          {
+            "title": "Step 04: Navigate to the requested page"
+          },
+          {
+            "title": "Step 05: Verify page has the expected URL"
+          },
+          {
+            "title": "Step 06: Verify text \"\" is hidden"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-22",
+        "suite": "session",
+        "rawSuiteTitle": "session",
+        "title": "TC-03 Every sidebar destination is reachable and renders",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 3687,
+        "durationStr": "3.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Verify the application shell is ready"
+          },
+          {
+            "title": "Step 02: Count items in the application shell"
+          },
+          {
+            "title": "Step 03: Verify navigation links meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-23",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-01 SMS form (الرسائل النصية) exposes its scheduling, link and message fields",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6594,
+        "durationStr": "6.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Open the SMS form (الرسائل النصية)"
+          },
+          {
+            "title": "Step 03: Verify the Date field is visible (التاريخ)"
+          },
+          {
+            "title": "Step 04: Verify the Enter channel URL field is visible (أدخل رابط القناة)"
+          },
+          {
+            "title": "Step 05: Verify element matching input[type=\"time\"] is visible"
+          },
+          {
+            "title": "Step 06: Verify message body is visible"
+          },
+          {
+            "title": "Step 07: Verify message body has the expected attribute"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-24",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-02 Notification form (إشعارات) exposes a 5000-character body and an audience selector",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7662,
+        "durationStr": "7.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Open the Notifications form (إشعارات)"
+          },
+          {
+            "title": "Step 03: Verify the Message title field is visible (عنوان الرسالة)"
+          },
+          {
+            "title": "Step 04: Verify the Message URL field is visible (رابط الرسالة)"
+          },
+          {
+            "title": "Step 05: Verify the Target audience field is visible (الفئة المستهدفة)"
+          },
+          {
+            "title": "Step 06: Verify message body is visible"
+          },
+          {
+            "title": "Step 07: Verify message body has the expected attribute"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-25",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-03 Banner form (مساحة إعلانية) exposes a date range and an indexed banner array",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5455,
+        "durationStr": "5.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Open the Advertising space form (مساحة إعلانية)"
+          },
+          {
+            "title": "Step 03: Verify the Campaign start date field is visible (تاريخ بداية الحملة)"
+          },
+          {
+            "title": "Step 04: Verify the Campaign end date field is visible (تاريخ نهاية الحملة)"
+          },
+          {
+            "title": "Step 05: Verify element matching [id=\"banners_arr.0.title\"] is visible"
+          },
+          {
+            "title": "Step 06: Verify element matching [id=\"banners_arr.0.url\"] is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-26",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-04 Email form (البريد الإلكتروني) exposes only a description field",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6102,
+        "durationStr": "6.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Open the Email form (البريد الإلكتروني)"
+          },
+          {
+            "title": "Step 03: Verify the Description field is visible (الوصف)"
+          },
+          {
+            "title": "Step 04: Verify the email form has no message body"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-27",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-05 WhatsApp form (واتساب) exposes only a description field",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6618,
+        "durationStr": "6.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Open the WhatsApp form (واتساب)"
+          },
+          {
+            "title": "Step 03: Verify the Description field is visible (الوصف)"
+          },
+          {
+            "title": "Step 04: Verify the WhatsApp form has no message body"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-28",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-06 Cold-calling form (الاتصال البيعي) exposes only a description field",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6276,
+        "durationStr": "6.3s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Open the Cold-calling form (الاتصال البيعي)"
+          },
+          {
+            "title": "Step 03: Verify the Description field is visible (الوصف)"
+          },
+          {
+            "title": "Step 04: Verify the cold-calling form has no message body"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-29",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-07 Popup form (نافذة منبثقة) exposes only a description field",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5141,
+        "durationStr": "5.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Open the Popup form (نافذة منبثقة)"
+          },
+          {
+            "title": "Step 03: Verify the Description field is visible (الوصف)"
+          },
+          {
+            "title": "Step 04: Verify the popup form has no message body"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-30",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-08 Channel list renders its 7 columns",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 9493,
+        "durationStr": "9.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the channels list"
+          },
+          {
+            "title": "Step 02: Read the column headers from the channels list"
+          },
+          {
+            "title": "Step 03: Verify table headers meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-31",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-09 channel numbers encode their channel type",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 8802,
+        "durationStr": "8.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the channels list"
+          },
+          {
+            "title": "Step 02: Read all channel records"
+          },
+          {
+            "title": "Step 03: Verify length meets the expected condition"
+          },
+          {
+            "title": "Step 04: Verify channel meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-32",
+        "suite": "channel-forms",
+        "rawSuiteTitle": "channel-forms",
+        "title": "TC-10 every channel status is one of the six known values",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7988,
+        "durationStr": "8.0s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the channels list"
+          },
+          {
+            "title": "Step 02: Read all channel records"
+          },
+          {
+            "title": "Step 03: Verify the displayed data meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-33",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-01 client list renders its 6 columns",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5476,
+        "durationStr": "5.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the clients list"
+          },
+          {
+            "title": "Step 02: Verify the clients list column headers"
+          },
+          {
+            "title": "Step 03: Verify the clients list contains records"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-34",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-02 filter narrows the list and reset restores it",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5768,
+        "durationStr": "5.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the clients list"
+          },
+          {
+            "title": "Step 02: Count the visible rows in the clients list"
+          },
+          {
+            "title": "Step 03: Verify baseline meets the expected condition"
+          },
+          {
+            "title": "Step 04: Open the client filters panel"
+          },
+          {
+            "title": "Step 05: Enter a value in the company name filter"
+          },
+          {
+            "title": "Step 06: Apply the selected client filters"
+          },
+          {
+            "title": "Step 07: Count the visible rows in the clients list"
+          },
+          {
+            "title": "Step 08: Verify filtered meets the expected condition"
+          },
+          {
+            "title": "Step 09: Read the visible company names"
+          },
+          {
+            "title": "Step 10: Reset client filters to restore the full list"
+          },
+          {
+            "title": "Step 11: Verify rows has the expected count"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-35",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-03 filtering on a value that matches nothing yields an empty list",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5884,
+        "durationStr": "5.9s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the clients list"
+          },
+          {
+            "title": "Step 02: Open the client filters panel"
+          },
+          {
+            "title": "Step 03: Enter a value in the company name filter"
+          },
+          {
+            "title": "Step 04: Apply the selected client filters"
+          },
+          {
+            "title": "Step 05: Verify expect empty on the clients list"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-36",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-04 client detail renders the stored CR and VAT in full",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5682,
+        "durationStr": "5.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the client detail page"
+          },
+          {
+            "title": "Step 02: Verify expect displayed value on the request detail page"
+          },
+          {
+            "title": "Step 03: Verify expect displayed value on the request detail page"
+          },
+          {
+            "title": "Step 04: Verify expect displayed value on the request detail page"
+          },
+          {
+            "title": "Step 05: Verify tabs has the expected count"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-37",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-05 client edit form prefills the full stored CR and VAT despite maxlength=10",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5389,
+        "durationStr": "5.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page edit form"
+          },
+          {
+            "title": "Step 02: Verify field has the expected attribute"
+          },
+          {
+            "title": "Step 03: Verify field has the expected value"
+          },
+          {
+            "title": "Step 04: Verify field has the expected attribute"
+          },
+          {
+            "title": "Step 05: Verify field has the expected value"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-38",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-06 add form caps CR and VAT at 10 characters",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 24055,
+        "durationStr": "24.1s",
+        "status": "Failed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the client add form"
+          },
+          {
+            "title": "Step 02: Enter a value in the field"
+          },
+          {
+            "title": "Step 03: Verify field has the expected value"
+          }
+        ],
+        "errorMessage": "Error: a real 15-digit Saudi VAT number must be storable\n\nexpect(locator).toHaveValue(expected) failed\n\nLocator:  locator('input[name=\"tax_registration_number\"]')\nExpected: \"300000000000003\"\nReceived: \"3000000000\"\nTimeout:  20000ms\n\nCall log:\n  - a real 15-digit Saudi VAT number must be storable locator('input[name=\"tax_registration_number\"]') with timeout 20000ms\n  - waiting for locator('input[name=\"tax_registration_number\"]')\n    43 × locator resolved to <input type=\"text\" maxlength=\"10\" value=\"3000000000\" inputmode=\"numeric\" name=\"tax_registration_number\" placeholder=\" رقم السجل الضريبي \"/>\n       - unexpected value \"3000000000\"\n"
+      },
+      {
+        "id": "tc-39",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-07 sector dropdown offers all 12 options",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 3670,
+        "durationStr": "3.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page edit form"
+          },
+          {
+            "title": "Step 02: Verify sector options has the expected count"
+          },
+          {
+            "title": "Step 03: Read displayed text from the sector options"
+          },
+          {
+            "title": "Step 04: Verify trimmed meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-40",
+        "suite": "clients",
+        "rawSuiteTitle": "clients",
+        "title": "TC-08 an existing client can be saved without inventing address data",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5588,
+        "durationStr": "5.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page edit form"
+          },
+          {
+            "title": "Step 02: Verify field has the expected value"
+          },
+          {
+            "title": "Step 03: Verify save button is visible"
+          },
+          {
+            "title": "Step 04: Navigate directly to the report tab URL"
+          },
+          {
+            "title": "Step 05: Click the save button"
+          },
+          {
+            "title": "Step 06: Verify expected condition exceeds the expected threshold"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-41",
+        "suite": "dashboard",
+        "rawSuiteTitle": "dashboard",
+        "title": "TC-01 all six widgets and the calendar render",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7389,
+        "durationStr": "7.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the dashboard"
+          },
+          {
+            "title": "Step 02: Verify calendar is visible"
+          },
+          {
+            "title": "Step 03: Verify expect all widgets on the dashboard"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-42",
+        "suite": "dashboard",
+        "rawSuiteTitle": "dashboard",
+        "title": "TC-02 sender-identity widget lists the nine registered identities",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6856,
+        "durationStr": "6.9s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the dashboard"
+          },
+          {
+            "title": "Step 02: Verify expect sender identities on the dashboard"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-43",
+        "suite": "dashboard",
+        "rawSuiteTitle": "dashboard",
+        "title": "TC -03 the drawer exposes all 16 admin destinations",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6004,
+        "durationStr": "6.0s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the dashboard"
+          },
+          {
+            "title": "Step 02: Verify nav link is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-44",
+        "suite": "dashboard",
+        "rawSuiteTitle": "dashboard",
+        "title": "TC-04 every sidebar link points at its module route",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5066,
+        "durationStr": "5.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the dashboard"
+          },
+          {
+            "title": "Step 02: Read the expected attribute from the dashboard"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-45",
+        "suite": "dashboard",
+        "rawSuiteTitle": "dashboard",
+        "title": "TC-05 Quick Promo CTA opens the express wizard",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6218,
+        "durationStr": "6.2s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the dashboard"
+          },
+          {
+            "title": "Step 02: Click the Quick Promo button"
+          },
+          {
+            "title": "Step 03: Verify authenticated page has the expected URL"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-46",
+        "suite": "reports",
+        "rawSuiteTitle": "reports",
+        "title": "TC-01 reports open on the campaigns tab with data",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6447,
+        "durationStr": "6.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the reports page"
+          },
+          {
+            "title": "Step 02: Verify heading \"تقارير الحملات\" is visible"
+          },
+          {
+            "title": "Step 03: Verify PDF export button is visible"
+          },
+          {
+            "title": "Step 04: Verify Excel export button is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-47",
+        "suite": "reports",
+        "rawSuiteTitle": "reports",
+        "title": "TC-02 each tab loads its own dataset",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7295,
+        "durationStr": "7.3s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the reports page"
+          },
+          {
+            "title": "Step 02: Open the channels report tab"
+          },
+          {
+            "title": "Step 03: Open the clients report tab"
+          },
+          {
+            "title": "Step 04: Open the campaigns report tab"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-48",
+        "suite": "reports",
+        "rawSuiteTitle": "reports",
+        "title": "TC-03 PDF export downloads a file",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 13610,
+        "durationStr": "13.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the reports page"
+          },
+          {
+            "title": "Step 02: Download the report as a PDF file"
+          },
+          {
+            "title": "Step 03: Verify suggested filename meets the expected condition"
+          },
+          {
+            "title": "Step 04: Get the downloaded file path"
+          },
+          {
+            "title": "Step 05: Verify path meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-49",
+        "suite": "reports",
+        "rawSuiteTitle": "reports",
+        "title": "TC-04 Excel export downloads a file",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 10593,
+        "durationStr": "10.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the reports page"
+          },
+          {
+            "title": "Step 02: Download the report as an Excel file"
+          },
+          {
+            "title": "Step 03: Verify suggested filename meets the expected condition"
+          },
+          {
+            "title": "Step 04: Get the downloaded file path"
+          },
+          {
+            "title": "Step 05: Verify path meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-50",
+        "suite": "reports",
+        "rawSuiteTitle": "reports",
+        "title": "TC-05 exports are offered on every report tab",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6565,
+        "durationStr": "6.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the reports page"
+          },
+          {
+            "title": "Step 02: Open the selected report tab"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-51",
+        "suite": "reports",
+        "rawSuiteTitle": "reports",
+        "title": "TC-05 Verify a report tab deep link restores that tab",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7306,
+        "durationStr": "7.3s",
+        "status": "Failed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Declare expected failure for known defect ISS-41"
+          },
+          {
+            "title": "Step 02: Navigate to deep link with tab parameter"
+          },
+          {
+            "title": "Step 03: Verify tab 1 heading is visible"
+          }
+        ],
+        "errorMessage": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('تقاريرالقنوات', { exact: true }).first()\nExpected: visible\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('تقاريرالقنوات', { exact: true }).first() with timeout 3000ms\n  - waiting for getByText('تقاريرالقنوات', { exact: true }).first()\n"
+      },
+      {
+        "id": "tc-52",
+        "suite": "request-detail",
+        "rawSuiteTitle": "request-detail",
+        "title": "TC-01 detail page renders the request, client block and audit trail",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5522,
+        "durationStr": "5.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Verify page heading is visible"
+          },
+          {
+            "title": "Step 03: Verify first is visible"
+          },
+          {
+            "title": "Step 04: Verify labelled value is visible"
+          },
+          {
+            "title": "Step 05: Verify audit table is visible"
+          },
+          {
+            "title": "Step 06: Read displayed text from the request detail page"
+          },
+          {
+            "title": "Step 07: Verify map meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-53",
+        "suite": "request-detail",
+        "rawSuiteTitle": "request-detail",
+        "title": "TC-02 a جديد request offers edit, delete and add-channel",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5262,
+        "durationStr": "5.3s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Verify edit request button is visible"
+          },
+          {
+            "title": "Step 03: Verify delete request button is visible"
+          },
+          {
+            "title": "Step 04: Verify add channel combobox is visible"
+          },
+          {
+            "title": "Step 05: Verify accept request button has the expected count"
+          },
+          {
+            "title": "Step 06: Verify create quotation button has the expected count"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-54",
+        "suite": "request-detail",
+        "rawSuiteTitle": "request-detail",
+        "title": "TC-03 an awaiting-approval request offers accept and reject",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6718,
+        "durationStr": "6.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Verify page heading is visible"
+          },
+          {
+            "title": "Step 03: Verify accept request button is visible"
+          },
+          {
+            "title": "Step 04: Verify reject request button is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-55",
+        "suite": "request-detail",
+        "rawSuiteTitle": "request-detail",
+        "title": "TC-04 an accepted request is where quotation creation becomes available",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5592,
+        "durationStr": "5.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Verify page heading is visible"
+          },
+          {
+            "title": "Step 03: Verify create quotation button is visible"
+          },
+          {
+            "title": "Step 04: Verify accept request button has the expected count"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-56",
+        "suite": "request-detail",
+        "rawSuiteTitle": "request-detail",
+        "title": "TC-05 an approved request offers delivery actions, not lifecycle actions",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6480,
+        "durationStr": "6.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Verify page heading is visible"
+          },
+          {
+            "title": "Step 03: Read the actions available for the approved request"
+          },
+          {
+            "title": "Step 04: Verify some meets the expected condition"
+          },
+          {
+            "title": "Step 05: Verify accept request button has the expected count"
+          },
+          {
+            "title": "Step 06: Verify create quotation button has the expected count"
+          },
+          {
+            "title": "Step 07: Verify delete request button has the expected count"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-57",
+        "suite": "request-detail",
+        "rawSuiteTitle": "request-detail",
+        "title": "TC-06 the add-channel menu offers all seven channel types",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6800,
+        "durationStr": "6.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the request detail page"
+          },
+          {
+            "title": "Step 02: Click the add channel combobox"
+          },
+          {
+            "title": "Step 03: Verify channel type option is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-58",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-01 standard list renders all 10 columns and 15 rows",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7455,
+        "durationStr": "7.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Read the column headers from the campaign requests list"
+          },
+          {
+            "title": "Step 03: Verify table headers meets the expected condition"
+          },
+          {
+            "title": "Step 04: Count the visible rows in the campaign requests list"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-59",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-02 Quick Promo tab queries a different dataset",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5508,
+        "durationStr": "5.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the campaign requests list"
+          },
+          {
+            "title": "Step 02: Wait for the Quick Promo API response"
+          },
+          {
+            "title": "Step 03: Verify url meets the expected condition"
+          },
+          {
+            "title": "Step 04: Verify first is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-60",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-03 status filter offers exactly the 7 API statuses",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7746,
+        "durationStr": "7.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Read the available options in the campaign requests list"
+          },
+          {
+            "title": "Step 03: Verify options meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-61",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-04 filter offers the 7 channel types",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7624,
+        "durationStr": "7.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Read the available options in the campaign requests list"
+          },
+          {
+            "title": "Step 03: Verify options meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-62",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-05 source filter lists all 8 upstream platforms",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 9627,
+        "durationStr": "9.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Read the available options in the campaign requests list"
+          },
+          {
+            "title": "Step 03: Verify options meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-63",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-06 search by exact request number returns that row",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 8733,
+        "durationStr": "8.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Read the visible campaign request numbers"
+          },
+          {
+            "title": "Step 03: Verify target meets the expected condition"
+          },
+          {
+            "title": "Step 04: Search the campaign requests list using the test query"
+          },
+          {
+            "title": "Step 05: Read the visible campaign request numbers"
+          },
+          {
+            "title": "Step 06: Verify numbers meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-64",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-07 search with no matches shows the empty state, not an error",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7403,
+        "durationStr": "7.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Search the campaign requests list using the test query"
+          },
+          {
+            "title": "Step 03: Verify empty state is visible"
+          },
+          {
+            "title": "Step 04: Count the visible rows in the campaign requests list"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-65",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-08 injection payloads in search are handled safely",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7984,
+        "durationStr": "8.0s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Search the campaign requests list using the test query"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-66",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-09 pagination returns distinct, correctly ordered pages",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 9675,
+        "durationStr": "9.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Verify the pagination controls are visible"
+          },
+          {
+            "title": "Step 03: Read the visible campaign request numbers"
+          },
+          {
+            "title": "Step 04: Verify the previous-page control is disabled on page one"
+          },
+          {
+            "title": "Step 05: Navigate to page 2"
+          },
+          {
+            "title": "Step 06: Read the visible campaign request numbers"
+          },
+          {
+            "title": "Step 07: Verify length meets the expected condition"
+          },
+          {
+            "title": "Step 08: Verify filter meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-67",
+        "suite": "requests-list",
+        "rawSuiteTitle": "requests-list",
+        "title": "TC-10 list spans the expected number of pages",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6727,
+        "durationStr": "6.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the standard campaign requests tab"
+          },
+          {
+            "title": "Step 02: Check the last page number in the campaign requests list"
+          },
+          {
+            "title": "Step 03: Verify last page meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-68",
+        "suite": "definition-platforms",
+        "rawSuiteTitle": "definition-platforms",
+        "title": "TC-01 Verify platform URL rejects a javascript: scheme",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 3998,
+        "durationStr": "4.0s",
+        "status": "Failed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Navigate to the requested page"
+          },
+          {
+            "title": "Step 02: Verify all form fields are visible"
+          },
+          {
+            "title": "Step 03: Fill in valid required form data"
+          },
+          {
+            "title": "Step 04: Enter invalid javascript: scheme in platform URL"
+          },
+          {
+            "title": "Step 05: Intercept network call and click submit button"
+          },
+          {
+            "title": "Step 06: Verify request rejection or URL protocol invalidity"
+          }
+        ],
+        "errorMessage": "Error: API / WAF should reject javascript scheme submission\n\nexpect(received).not.toBe(expected) // Object.is equality\n\nExpected: not 200"
+      },
+      {
+        "id": "tc-69",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-01 Login page renders all three inputs and the CAPTCHA image",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 4051,
+        "durationStr": "4.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Verify email field is visible"
+          },
+          {
+            "title": "Step 03: Verify password field is visible"
+          },
+          {
+            "title": "Step 04: Verify input is visible"
+          },
+          {
+            "title": "Step 05: Verify image is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-70",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-02 Submit is disabled until all three fields are filled",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 4386,
+        "durationStr": "4.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter a value in the email field"
+          },
+          {
+            "title": "Step 03: Enter a value in the password field"
+          },
+          {
+            "title": "Step 04: Verify submit button is disabled"
+          },
+          {
+            "title": "Step 05: Enter a value in the CAPTCHA field"
+          },
+          {
+            "title": "Step 06: Verify submit button is enabled"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-71",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-03 Email is trimmed of surrounding whitespace",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 2561,
+        "durationStr": "2.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter a value in the email field"
+          },
+          {
+            "title": "Step 03: Click the password field"
+          },
+          {
+            "title": "Step 04: Verify email field has the expected value"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-72",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-04 Required messages appear after clearing a filled field",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 2808,
+        "durationStr": "2.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter a value in the email field"
+          },
+          {
+            "title": "Step 03: Clear the email field"
+          },
+          {
+            "title": "Step 04: Click the password field"
+          },
+          {
+            "title": "Step 05: Verify first is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-73",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-05 Password eyetoggle reveals and re-hides",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 3386,
+        "durationStr": "3.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter a value in the password field"
+          },
+          {
+            "title": "Step 03: Verify password field has the expected attribute"
+          },
+          {
+            "title": "Step 04: Click the password eye toggle"
+          },
+          {
+            "title": "Step 05: Verify password field has the expected attribute"
+          },
+          {
+            "title": "Step 06: Click the password eye toggle"
+          },
+          {
+            "title": "Step 07: Verify password field has the expected attribute"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-74",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-06 Valid credentials issue a token, land on the dashboard, with no OTP step",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 6442,
+        "durationStr": "6.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter the login credentials"
+          },
+          {
+            "title": "Step 03: Submit valid credentials and wait for login success"
+          },
+          {
+            "title": "Step 04: Verify expect authenticated as on the application shell"
+          },
+          {
+            "title": "Step 05: Read the stored authentication token"
+          },
+          {
+            "title": "Step 06: Verify otp routes meets the expected condition"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-75",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-07 logout responds to an ordinary user click",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5001,
+        "durationStr": "5.0s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Verify logout link is visible"
+          },
+          {
+            "title": "Step 02: Click the setting icon and logout link using a real user interaction"
+          },
+          {
+            "title": "Step 03: Verify authenticated page has the expected URL of login page"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-76",
+        "suite": "authentication-and-logout-journey",
+        "rawSuiteTitle": "authentication-and-logout-journey",
+        "title": "TC-08 Logout clears the token, redirects, and Back does not restore the session",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 2769,
+        "durationStr": "2.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Navigate to the requested page"
+          },
+          {
+            "title": "Step 02: Verify expect authenticated as on the application shell"
+          },
+          {
+            "title": "Step 03: Log out of the application"
+          },
+          {
+            "title": "Step 04: Wait for the expected page navigation"
+          },
+          {
+            "title": "Step 05: Verify no authentication token is stored"
+          },
+          {
+            "title": "Step 06: Navigate back to the previous page"
+          },
+          {
+            "title": "Step 07: Verify text \"\" is hidden"
+          },
+          {
+            "title": "Step 08: Read the stored authentication token"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-77",
+        "suite": "auth-negative",
+        "rawSuiteTitle": "auth-negative",
+        "title": "TC-01 Valid credentials with a wrong CAPTCHA are rejected",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 7549,
+        "durationStr": "7.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter the login credentials"
+          },
+          {
+            "title": "Step 03: Click the submit button"
+          },
+          {
+            "title": "Step 04: Wait for the authentication response"
+          },
+          {
+            "title": "Step 05: Verify status meets the expected condition"
+          },
+          {
+            "title": "Step 06: Read the API response body"
+          },
+          {
+            "title": "Step 07: Verify the login page is still displayed"
+          },
+          {
+            "title": "Step 08: Verify no authentication token is stored"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-78",
+        "suite": "auth-negative",
+        "rawSuiteTitle": "auth-negative",
+        "title": "TC-02 A wrong password is rejected",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 5185,
+        "durationStr": "5.2s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter the login credentials"
+          },
+          {
+            "title": "Step 03: Click the submit button"
+          },
+          {
+            "title": "Step 04: Wait for the authentication response"
+          },
+          {
+            "title": "Step 05: Verify status meets the expected condition"
+          },
+          {
+            "title": "Step 06: Read the API response body"
+          },
+          {
+            "title": "Step 07: Verify the login page is still displayed"
+          },
+          {
+            "title": "Step 08: Verify no authentication token is stored"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-79",
+        "suite": "auth-negative",
+        "rawSuiteTitle": "auth-negative",
+        "title": "TC-03 an unknown account returns the same error as a wrong password",
+        "product": "Sayal",
+        "environment": "Pre-Prod",
+        "durationMs": 4709,
+        "durationStr": "4.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the login page"
+          },
+          {
+            "title": "Step 02: Enter the login credentials"
+          },
+          {
+            "title": "Step 03: Click the submit button"
+          },
+          {
+            "title": "Step 04: Wait for the authentication response"
+          },
+          {
+            "title": "Step 05: Verify status meets the expected condition"
+          },
+          {
+            "title": "Step 06: Read the API response body"
+          },
+          {
+            "title": "Step 07: Verify no authentication token is stored"
+          }
+        ],
+        "errorMessage": ""
+      }
+    ],
+    "formattedDuration": "8m 18.2s",
+    "suitesList": "Admin Lists, Permissions, Audience, Session, Channel Forms, Clients, Dashboard, Reports, Request Detail, Requests List, Definition Platforms, Authentication And Logout Journey, Auth Negative"
+  },
+  "Gov Support": {
+    "product": "Gov Support",
+    "environment": "Pre-Prod",
+    "total": 6,
+    "passed": 2,
+    "failed": 4,
+    "skipped": 0,
+    "durationMs": 494408,
+    "suitesSet": {},
+    "specs": [
+      {
+        "id": "tc-80",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-01 Add new electronic auction project",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 66950,
+        "durationStr": "1m 7.0s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Define auction start/end date and time"
+          },
+          {
+            "title": "Step 02: Write the auction start and end dates and times to the Auction_Units.xlsx file"
+          },
+          {
+            "title": "Step 03: Login to admin portal"
+          },
+          {
+            "title": "Step 04: Navigate to the auction project creation page"
+          },
+          {
+            "title": "Step 05: Fill in the auction project details"
+          },
+          {
+            "title": "Step 06: Select region and city"
+          },
+          {
+            "title": "Step 07: Enter date, time and save"
+          },
+          {
+            "title": "Step 08: Upload auction media > Enter media details > Save"
+          },
+          {
+            "title": "Step 09: Upload auction units file > commit the units"
+          },
+          {
+            "title": "Step 10: Save unit model"
+          },
+          {
+            "title": "Step 11: Unit model media > Save and approve media"
+          },
+          {
+            "title": "Step 12: Unit model auction legal > Upload documents > Save"
+          },
+          {
+            "title": "Step 13: Auction setting > enable fee > Save"
+          },
+          {
+            "title": "Step 14: Publish unit model"
+          },
+          {
+            "title": "Step 15: Publish auction project"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-81",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-02 - User bids electronic auction and pays fee",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 48195,
+        "durationStr": "48.2s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Log in to the Sakani user portal"
+          },
+          {
+            "title": "Step 02: Search for the auction project"
+          }
+        ],
+        "errorMessage": "Error: locator.click: Error: strict mode violation: locator('app-global-search-modal-result-block').getByText('', { exact: true }) resolved to 2 elements:\n    1) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('.svg-icon.svg-icon--large').first()\n    2) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('div:nth-child(2) > .icon > .svg-icon')\n\nCall log:\n  - waiting for locator('app-global-search-modal-result-block').getByText('', { exact: true })\n"
+      },
+      {
+        "id": "tc-82",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-01 - Add new hybrid auction project",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 78977,
+        "durationStr": "1m 19.0s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Define the hybrid auction schedule and project data"
+          },
+          {
+            "title": "Step 02: Write the auction schedule to the units workbook"
+          },
+          {
+            "title": "Step 03: Log in to the admin portal"
+          },
+          {
+            "title": "Step 04: Open the auction project creation page"
+          },
+          {
+            "title": "Step 05: Enter project details and select the hybrid auction type"
+          },
+          {
+            "title": "Step 06: Select the project region and city"
+          },
+          {
+            "title": "Step 07: Set the auction start and end date and time, then save"
+          },
+          {
+            "title": "Step 08: Enter auction media details and submit them for approval"
+          },
+          {
+            "title": "Step 09: Upload the auction units file and commit the units"
+          },
+          {
+            "title": "Step 10: Save the imported unit model"
+          },
+          {
+            "title": "Step 11: Save and approve the unit model media"
+          },
+          {
+            "title": "Step 12: Upload and save the auction legal documents"
+          },
+          {
+            "title": "Step 13: Publish the unit model"
+          },
+          {
+            "title": "Step 14: Publish the auction project"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-83",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-02 - User joins hybrid auction and signs contract",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 91437,
+        "durationStr": "1m 31.4s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Log in to the Sakani user portal"
+          }
+        ],
+        "errorMessage": "TimeoutError: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://pre-sakani.housingapps.sa/\", waiting until \"load\"\n"
+      },
+      {
+        "id": "tc-84",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-03 - Add new hybrid auction project with fee",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 172628,
+        "durationStr": "2m 52.6s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Define the hybrid auction schedule and project data"
+          },
+          {
+            "title": "Step 02: Write the auction schedule to the units workbook"
+          },
+          {
+            "title": "Step 03: Log in to the admin portal"
+          },
+          {
+            "title": "Step 04: Open the auction project creation page"
+          },
+          {
+            "title": "Step 05: Enter project details and select the hybrid auction type"
+          },
+          {
+            "title": "Step 06: Select the project region and city"
+          },
+          {
+            "title": "Step 07: Set the auction start and end date and time, then save"
+          },
+          {
+            "title": "Step 08: Enter auction media details and submit them for approval"
+          },
+          {
+            "title": "Step 09: Upload the auction units file and commit the units"
+          }
+        ],
+        "errorMessage": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('تحت الإجراء ...', { exact: true })\nExpected: visible\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('تحت الإجراء ...', { exact: true }) with timeout 120000ms\n  - waiting for getByText('تحت الإجراء ...', { exact: true })\n  - Target page, context or browser has been closed\n"
+      },
+      {
+        "id": "tc-85",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-04 - User joins hybrid auction and pays the fee",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 36221,
+        "durationStr": "36.2s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Log in to the Sakani user portal"
+          },
+          {
+            "title": "Step 02: Search for the hybrid auction project"
+          }
+        ],
+        "errorMessage": "Error: locator.click: Error: strict mode violation: locator('app-global-search-modal-result-block').getByText('', { exact: true }) resolved to 2 elements:\n    1) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('.svg-icon.svg-icon--large').first()\n    2) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('div:nth-child(2) > .icon > .svg-icon')\n\nCall log:\n  - waiting for locator('app-global-search-modal-result-block').getByText('', { exact: true })\n"
+      }
+    ],
+    "formattedDuration": "8m 14.4s",
+    "suitesList": "Auction Booking Journey"
+  },
+  "Marketplace": {
+    "product": "Marketplace",
+    "environment": "Pre-Prod",
+    "total": 34,
+    "passed": 33,
+    "failed": 1,
+    "skipped": 0,
+    "durationMs": 1217154,
+    "suitesSet": {},
+    "specs": [
+      {
+        "id": "tc-86",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-01 Purchased deals shows its empty state and marketplace CTA",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 35289,
+        "durationStr": "35.3s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Purchased deals activities page"
+          },
+          {
+            "title": "Step 02: Wait for the listing to render"
+          },
+          {
+            "title": "Step 03: Verify the empty state and Marketplace CTA"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-87",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-02 Waiting list shows its own empty-state wording",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 29671,
+        "durationStr": "29.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Waiting list activities page"
+          },
+          {
+            "title": "Step 02: Wait for the waiting list to render"
+          },
+          {
+            "title": "Step 03: Verify the empty-state wording is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-88",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-03 Certified contractors reports no active contractors",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 85714,
+        "durationStr": "1m 25.7s",
+        "status": "Failed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Certified contractors activities page"
+          },
+          {
+            "title": "Step 02: Wait for the list to load"
+          }
+        ],
+        "errorMessage": "Error: page.evaluate: Target page, context or browser has been closed"
+      },
+      {
+        "id": "tc-89",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-04 Conveyance shows its empty state and a create action",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 49354,
+        "durationStr": "49.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Conveyance activities page"
+          },
+          {
+            "title": "Step 02: Wait for the conveyance list to render"
+          },
+          {
+            "title": "Step 03: Verify empty state and Create request action"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-90",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-05 Conveyance exposes an outcome tab per review state",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 51644,
+        "durationStr": "51.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Conveyance module"
+          },
+          {
+            "title": "Step 02: Validate the review outcome tabs"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-91",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-06 Online lending offers the start action",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 41526,
+        "durationStr": "41.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Online lending activities page"
+          },
+          {
+            "title": "Step 02: Verify the Start Online Lending action is visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-92",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-07 My auctions separates active from closed",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 48167,
+        "durationStr": "48.2s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the My auctions module"
+          },
+          {
+            "title": "Step 02: Confirm active and closed tabs are available"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-93",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-08 Farz certificates shows its empty state",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 47245,
+        "durationStr": "47.2s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Farz certificates module"
+          },
+          {
+            "title": "Step 02: Wait for the list to render"
+          },
+          {
+            "title": "Step 03: Verify the empty state is shown"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-94",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-09 Farz certificates exposes lifecycle tabs",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 48052,
+        "durationStr": "48.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Farz certificates page"
+          },
+          {
+            "title": "Step 02: Check the certificate lifecycle tabs"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-95",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-10 Unit delivery shows its empty state",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 45269,
+        "durationStr": "45.3s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Unit delivery page"
+          },
+          {
+            "title": "Step 02: Wait for the list to load"
+          },
+          {
+            "title": "Step 03: Verify the empty state is displayed"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-96",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-11 Unit delivery separates developer acceptance from beneficiary",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 47875,
+        "durationStr": "47.9s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Unit delivery module"
+          },
+          {
+            "title": "Step 02: Verify developer and beneficiary acceptance tabs are present"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-97",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-12 Rental requests shows its empty state",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 219127,
+        "durationStr": "3m 39.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Rental requests page"
+          },
+          {
+            "title": "Step 02: Wait for the rental request list to render"
+          },
+          {
+            "title": "Step 03: Verify the empty state is shown"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-98",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-13 Rental requests exposes an Incomplete resume state",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 39265,
+        "durationStr": "39.3s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Rental requests module"
+          },
+          {
+            "title": "Step 02: Validate the incomplete and lifecycle tabs"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-99",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-14 Resale requests offers both Sell and Buy sides",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 34821,
+        "durationStr": "34.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Resale requests module"
+          },
+          {
+            "title": "Step 02: Confirm the Sell and Buy tabs are visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-100",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-15 Resale requests exposes its full status lifecycle",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 42616,
+        "durationStr": "42.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Resale requests module"
+          },
+          {
+            "title": "Step 02: Validate the full lifecycle tabs"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-101",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-16 The tax service offers both request and inquiry modes",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 37816,
+        "durationStr": "37.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Tax service module"
+          },
+          {
+            "title": "Step 02: Confirm inquiry mode is present"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-102",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-16 Financial applications renders its status banner",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 37389,
+        "durationStr": "37.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Financial applications page"
+          },
+          {
+            "title": "Step 02: Wait for the status list to settle"
+          },
+          {
+            "title": "Step 03: Validate the module resolves to a real status state"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-103",
+        "suite": "activities-detail",
+        "rawSuiteTitle": "activities-detail",
+        "title": "TC-17 Housing design requests expose lifecycle tabs",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 31363,
+        "durationStr": "31.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the Housing design requests page"
+          },
+          {
+            "title": "Step 02: Validate the lifecycle tabs for housing design requests"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-104",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-01 FAQ list renders with pagination",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 5351,
+        "durationStr": "5.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the FAQ page"
+          },
+          {
+            "title": "Step 02: Confirm the FAQ list and pagination exist"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-105",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-02 FAQ search is disabled until a term is entered",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 4278,
+        "durationStr": "4.3s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the FAQ page"
+          },
+          {
+            "title": "Step 02: Assert the search is disabled until input exists"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-106",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-03 Searching a keyword returns matching questions",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 7909,
+        "durationStr": "7.9s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the FAQ page"
+          },
+          {
+            "title": "Step 02: Search for a keyword and validate the set changes"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-107",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-04 A no-match search shows an empty result set",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 8036,
+        "durationStr": "8.0s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the FAQ page"
+          },
+          {
+            "title": "Step 02: Search for a term with no matches"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-108",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-05 A question expands to reveal its answer",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 4543,
+        "durationStr": "4.5s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open FAQs"
+          },
+          {
+            "title": "Step 02: Expand the first question"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-109",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-06 The \"was this helpful\" control is offered",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 4086,
+        "durationStr": "4.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the FAQ page"
+          },
+          {
+            "title": "Step 02: Confirm the helpfulness controls are visible"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-110",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-01 Send is disabled while the form is empty",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 5949,
+        "durationStr": "5.9s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the contact form"
+          },
+          {
+            "title": "Step 02: Validate Send is disabled with no input"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-111",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-02 All six fields are marked mandatory (Type of request, National ID, Beneficiary Name, Region, City, Message)",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 6113,
+        "durationStr": "6.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the contact form"
+          },
+          {
+            "title": "Step 02: Confirm required labels are marked as mandatory"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-112",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-03 Filling only some fields leaves Send disabled",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 6560,
+        "durationStr": "6.6s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the contact form"
+          },
+          {
+            "title": "Step 02: Fill only some fields and verify submit remains blocked"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-113",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-04 A malformed national ID does not enable submission",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 7408,
+        "durationStr": "7.4s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the contact form"
+          },
+          {
+            "title": "Step 02: Enter malformed ID and validate submit stays disabled"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-114",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-05 A very long message is accepted or capped without breaking",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 5843,
+        "durationStr": "5.8s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the contact form"
+          },
+          {
+            "title": "Step 02: Enter a long message and confirm it remains usable"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-115",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-06 Script-like input in the message is not executed",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 5704,
+        "durationStr": "5.7s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the contact form"
+          },
+          {
+            "title": "Step 02: Enter script-like content and ensure it is not executed"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-116",
+        "suite": "support-and-help",
+        "rawSuiteTitle": "support-and-help",
+        "title": "TC-07 The request-type dropdown offers options",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 6127,
+        "durationStr": "6.1s",
+        "status": "Passed",
+        "isCritical": false,
+        "steps": [
+          {
+            "title": "Step 01: Open the contact form"
+          },
+          {
+            "title": "Step 02: Open the request-type dropdown and verify options appear"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-117",
+        "suite": "user-wallet",
+        "rawSuiteTitle": "user-wallet",
+        "title": "TC-01 Withdraw funds from wallet",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 55720,
+        "durationStr": "55.7s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Open the user portal and log in"
+          },
+          {
+            "title": "Step 02: Open the wallet page and capture balances"
+          },
+          {
+            "title": "Step 03: Submit a withdrawal request"
+          },
+          {
+            "title": "Step 04: Confirm the withdrawal with OTP"
+          },
+          {
+            "title": "Step 05: Close the success confirmation"
+          },
+          {
+            "title": "Step 06: Validate the wallet balances changed after withdrawal"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-118",
+        "suite": "payments-and-transactions",
+        "rawSuiteTitle": "payments-and-transactions",
+        "title": "TC-01 User preview and download the invoice and receipt",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 60068,
+        "durationStr": "1m 0.1s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Login to the user portal"
+          },
+          {
+            "title": "Step 02: Open payments history"
+          },
+          {
+            "title": "Step 03: Clear the downloads folder"
+          },
+          {
+            "title": "Step 04: Open the invoice preview and capture its PDF > Save pdf in download directory"
+          },
+          {
+            "title": "Step 05: Save the invoice and verify it exists"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-119",
+        "suite": "payments-and-transactions",
+        "rawSuiteTitle": "payments-and-transactions",
+        "title": "TC-02 Withdraw funds from wallet",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 51256,
+        "durationStr": "51.3s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Open the user portal and log in"
+          },
+          {
+            "title": "Step 02: Open the wallet page and capture balances"
+          },
+          {
+            "title": "Step 03: Submit a withdrawal request"
+          },
+          {
+            "title": "Step 04: Confirm the withdrawal with OTP"
+          },
+          {
+            "title": "Step 05: Close the success confirmation"
+          },
+          {
+            "title": "Step 06: Validate the wallet balances changed after withdrawal"
+          }
+        ],
+        "errorMessage": ""
+      }
+    ],
+    "formattedDuration": "20m 17.2s",
+    "suitesList": "Activities Detail, Support And Help, User Wallet, Payments And Transactions"
+  }
+};
+    const readinessData = {
+  "Sayal": {
+    "product": "Sayal",
+    "environment": "Pre-Prod",
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 0,
+    "suitesSet": {},
+    "specs": [],
+    "formattedDuration": "0s",
+    "suitesList": "None"
+  },
+  "Gov Support": {
+    "product": "Gov Support",
+    "environment": "Pre-Prod",
+    "total": 6,
+    "passed": 2,
+    "failed": 4,
+    "skipped": 0,
+    "durationMs": 494408,
+    "suitesSet": {},
+    "specs": [
+      {
+        "id": "tc-80",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-01 Add new electronic auction project",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 66950,
+        "durationStr": "1m 7.0s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Define auction start/end date and time"
+          },
+          {
+            "title": "Step 02: Write the auction start and end dates and times to the Auction_Units.xlsx file"
+          },
+          {
+            "title": "Step 03: Login to admin portal"
+          },
+          {
+            "title": "Step 04: Navigate to the auction project creation page"
+          },
+          {
+            "title": "Step 05: Fill in the auction project details"
+          },
+          {
+            "title": "Step 06: Select region and city"
+          },
+          {
+            "title": "Step 07: Enter date, time and save"
+          },
+          {
+            "title": "Step 08: Upload auction media > Enter media details > Save"
+          },
+          {
+            "title": "Step 09: Upload auction units file > commit the units"
+          },
+          {
+            "title": "Step 10: Save unit model"
+          },
+          {
+            "title": "Step 11: Unit model media > Save and approve media"
+          },
+          {
+            "title": "Step 12: Unit model auction legal > Upload documents > Save"
+          },
+          {
+            "title": "Step 13: Auction setting > enable fee > Save"
+          },
+          {
+            "title": "Step 14: Publish unit model"
+          },
+          {
+            "title": "Step 15: Publish auction project"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-81",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-02 - User bids electronic auction and pays fee",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 48195,
+        "durationStr": "48.2s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Log in to the Sakani user portal"
+          },
+          {
+            "title": "Step 02: Search for the auction project"
+          }
+        ],
+        "errorMessage": "Error: locator.click: Error: strict mode violation: locator('app-global-search-modal-result-block').getByText('', { exact: true }) resolved to 2 elements:\n    1) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('.svg-icon.svg-icon--large').first()\n    2) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('div:nth-child(2) > .icon > .svg-icon')\n\nCall log:\n  - waiting for locator('app-global-search-modal-result-block').getByText('', { exact: true })\n"
+      },
+      {
+        "id": "tc-82",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-01 - Add new hybrid auction project",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 78977,
+        "durationStr": "1m 19.0s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Define the hybrid auction schedule and project data"
+          },
+          {
+            "title": "Step 02: Write the auction schedule to the units workbook"
+          },
+          {
+            "title": "Step 03: Log in to the admin portal"
+          },
+          {
+            "title": "Step 04: Open the auction project creation page"
+          },
+          {
+            "title": "Step 05: Enter project details and select the hybrid auction type"
+          },
+          {
+            "title": "Step 06: Select the project region and city"
+          },
+          {
+            "title": "Step 07: Set the auction start and end date and time, then save"
+          },
+          {
+            "title": "Step 08: Enter auction media details and submit them for approval"
+          },
+          {
+            "title": "Step 09: Upload the auction units file and commit the units"
+          },
+          {
+            "title": "Step 10: Save the imported unit model"
+          },
+          {
+            "title": "Step 11: Save and approve the unit model media"
+          },
+          {
+            "title": "Step 12: Upload and save the auction legal documents"
+          },
+          {
+            "title": "Step 13: Publish the unit model"
+          },
+          {
+            "title": "Step 14: Publish the auction project"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-83",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-02 - User joins hybrid auction and signs contract",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 91437,
+        "durationStr": "1m 31.4s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Log in to the Sakani user portal"
+          }
+        ],
+        "errorMessage": "TimeoutError: page.goto: Timeout 90000ms exceeded.\nCall log:\n  - navigating to \"https://pre-sakani.housingapps.sa/\", waiting until \"load\"\n"
+      },
+      {
+        "id": "tc-84",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-03 - Add new hybrid auction project with fee",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 172628,
+        "durationStr": "2m 52.6s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Define the hybrid auction schedule and project data"
+          },
+          {
+            "title": "Step 02: Write the auction schedule to the units workbook"
+          },
+          {
+            "title": "Step 03: Log in to the admin portal"
+          },
+          {
+            "title": "Step 04: Open the auction project creation page"
+          },
+          {
+            "title": "Step 05: Enter project details and select the hybrid auction type"
+          },
+          {
+            "title": "Step 06: Select the project region and city"
+          },
+          {
+            "title": "Step 07: Set the auction start and end date and time, then save"
+          },
+          {
+            "title": "Step 08: Enter auction media details and submit them for approval"
+          },
+          {
+            "title": "Step 09: Upload the auction units file and commit the units"
+          }
+        ],
+        "errorMessage": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('تحت الإجراء ...', { exact: true })\nExpected: visible\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('تحت الإجراء ...', { exact: true }) with timeout 120000ms\n  - waiting for getByText('تحت الإجراء ...', { exact: true })\n  - Target page, context or browser has been closed\n"
+      },
+      {
+        "id": "tc-85",
+        "suite": "auction-booking-journey-suit",
+        "rawSuiteTitle": "auction-booking-journey-suit",
+        "title": "TC-04 - User joins hybrid auction and pays the fee",
+        "product": "Gov Support",
+        "environment": "Pre-Prod",
+        "durationMs": 36221,
+        "durationStr": "36.2s",
+        "status": "Failed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Log in to the Sakani user portal"
+          },
+          {
+            "title": "Step 02: Search for the hybrid auction project"
+          }
+        ],
+        "errorMessage": "Error: locator.click: Error: strict mode violation: locator('app-global-search-modal-result-block').getByText('', { exact: true }) resolved to 2 elements:\n    1) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('.svg-icon.svg-icon--large').first()\n    2) <span _ngcontent-ng-c2767076282=\"\" class=\"svg-icon svg-icon--large icon-services solid\"></span> aka locator('div:nth-child(2) > .icon > .svg-icon')\n\nCall log:\n  - waiting for locator('app-global-search-modal-result-block').getByText('', { exact: true })\n"
+      }
+    ],
+    "formattedDuration": "8m 14.4s",
+    "suitesList": "Auction Booking Journey"
+  },
+  "Marketplace": {
+    "product": "Marketplace",
+    "environment": "Pre-Prod",
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 167044,
+    "suitesSet": {},
+    "specs": [
+      {
+        "id": "tc-117",
+        "suite": "user-wallet",
+        "rawSuiteTitle": "user-wallet",
+        "title": "TC-01 Withdraw funds from wallet",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 55720,
+        "durationStr": "55.7s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Open the user portal and log in"
+          },
+          {
+            "title": "Step 02: Open the wallet page and capture balances"
+          },
+          {
+            "title": "Step 03: Submit a withdrawal request"
+          },
+          {
+            "title": "Step 04: Confirm the withdrawal with OTP"
+          },
+          {
+            "title": "Step 05: Close the success confirmation"
+          },
+          {
+            "title": "Step 06: Validate the wallet balances changed after withdrawal"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-118",
+        "suite": "payments-and-transactions",
+        "rawSuiteTitle": "payments-and-transactions",
+        "title": "TC-01 User preview and download the invoice and receipt",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 60068,
+        "durationStr": "1m 0.1s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Login to the user portal"
+          },
+          {
+            "title": "Step 02: Open payments history"
+          },
+          {
+            "title": "Step 03: Clear the downloads folder"
+          },
+          {
+            "title": "Step 04: Open the invoice preview and capture its PDF > Save pdf in download directory"
+          },
+          {
+            "title": "Step 05: Save the invoice and verify it exists"
+          }
+        ],
+        "errorMessage": ""
+      },
+      {
+        "id": "tc-119",
+        "suite": "payments-and-transactions",
+        "rawSuiteTitle": "payments-and-transactions",
+        "title": "TC-02 Withdraw funds from wallet",
+        "product": "Marketplace",
+        "environment": "Pre-Prod",
+        "durationMs": 51256,
+        "durationStr": "51.3s",
+        "status": "Passed",
+        "isCritical": true,
+        "steps": [
+          {
+            "title": "Step 01: Open the user portal and log in"
+          },
+          {
+            "title": "Step 02: Open the wallet page and capture balances"
+          },
+          {
+            "title": "Step 03: Submit a withdrawal request"
+          },
+          {
+            "title": "Step 04: Confirm the withdrawal with OTP"
+          },
+          {
+            "title": "Step 05: Close the success confirmation"
+          },
+          {
+            "title": "Step 06: Validate the wallet balances changed after withdrawal"
+          }
+        ],
+        "errorMessage": ""
+      }
+    ],
+    "formattedDuration": "2m 47.0s",
+    "suitesList": "User Wallet, Payments And Transactions"
+  }
+};
+    
+    let currentMode = 'health';
+    let currentStatusFilter = 'all';
+    let selectedProductKey = "Sayal";
+    let chartInstance = null;
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function toggleDropdown(menuId) {
+      const menu = document.getElementById(menuId);
+      const isHidden = menu.classList.contains('hidden');
+      closeAllDropdowns();
+      if (isHidden) {
+        menu.classList.remove('hidden');
+      }
+    }
+
+    function closeAllDropdowns() {
+      const pMenu = document.getElementById('productDropdownMenu');
+      const sMenu = document.getElementById('statusDropdownMenu');
+      if (pMenu) pMenu.classList.add('hidden');
+      if (sMenu) sMenu.classList.add('hidden');
+    }
+
+    document.addEventListener('click', function(event) {
+      const pContainer = document.getElementById('productDropdownContainer');
+      const sContainer = document.getElementById('statusDropdownContainer');
+      if ((!pContainer || !pContainer.contains(event.target)) && 
+          (!sContainer || !sContainer.contains(event.target))) {
+        closeAllDropdowns();
+      }
+    });
+
+    function selectProductOption(key) {
+      selectedProductKey = key;
+      document.getElementById('productDropdownSelected').innerText = key;
+      
+      currentStatusFilter = 'all';
+      document.getElementById('statusDropdownSelected').innerText = 'All';
+
+      closeAllDropdowns();
+      renderDashboard(selectedProductKey);
+    }
+
+    function selectStatusOption(value, label) {
+      currentStatusFilter = value;
+      document.getElementById('statusDropdownSelected').innerText = label;
+      closeAllDropdowns();
+      renderDashboard(selectedProductKey);
+    }
+
+    function toggleSteps(stepRowId, btn) {
+      const stepRow = document.getElementById(stepRowId);
+      if (!stepRow) return;
+
+      const isHidden = stepRow.classList.contains('hidden');
+      if (isHidden) {
+        stepRow.classList.remove('hidden');
+        btn.innerText = 'Hide steps';
+        btn.className = "w-32 inline-block py-1.5 text-xs font-semibold rounded-md border border-emerald-700 bg-[#166242] text-white hover:bg-[#125036] transition-all shadow-sm text-center";
+      } else {
+        stepRow.classList.add('hidden');
+        btn.innerText = 'Show steps';
+        btn.className = "w-32 inline-block py-1.5 text-xs font-semibold rounded-md border border-emerald-700 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition-all shadow-sm text-center";
+      }
+    }
+
+    function setExecutionMode(mode) {
+      currentMode = mode;
+      const btnReadiness = document.getElementById('btnReadiness');
+      const btnHealthCheck = document.getElementById('btnHealthCheck');
+
+      if (mode === 'readiness') {
+        btnReadiness.className = "px-5 py-2 text-xs font-bold rounded-lg transition-all border border-emerald-700 bg-[#166242] text-white shadow-sm";
+        btnHealthCheck.className = "px-5 py-2 text-xs font-bold rounded-lg transition-all border border-emerald-700 text-emerald-800 bg-white hover:bg-emerald-50 shadow-sm";
+      } else {
+        btnHealthCheck.className = "px-5 py-2 text-xs font-bold rounded-lg transition-all border border-emerald-700 bg-[#166242] text-white shadow-sm";
+        btnReadiness.className = "px-5 py-2 text-xs font-bold rounded-lg transition-all border border-emerald-700 text-emerald-800 bg-white hover:bg-emerald-50 shadow-sm";
+      }
+
+      renderDashboard(selectedProductKey);
+    }
+
+    function renderDashboard(productKey) {
+      const activeDataMap = currentMode === 'readiness' ? readinessData : healthCheckData;
+      const availableKeys = Object.keys(activeDataMap);
+      const targetKey = activeDataMap[productKey] ? productKey : availableKeys[0];
+      const data = activeDataMap[targetKey] || {
+        product: targetKey || selectedProductKey,
+        environment: 'Pre-Prod',
+        total: 0,
+        passed: 0,
+        failed: 0,
+        skipped: 0,
+        formattedDuration: '0s',
+        suitesList: 'None',
+        specs: []
+      };
+
+      const total = data.total || 0;
+      const passed = data.passed || 0;
+      const failed = data.failed || 0;
+      const skipped = data.skipped || 0;
+
+      document.getElementById("totalExecuted").innerText = total;
+      document.getElementById("passedCount").innerText = passed;
+      document.getElementById("failedCount").innerText = failed;
+      document.getElementById("skippedCount").innerText = skipped;
+      document.getElementById("tableTagTitle").innerText = data.product;
+
+      document.getElementById("suitesScopeValue").innerText = data.suitesList || 'None';
+      document.getElementById("productScopeValue").innerText = data.product;
+      document.getElementById("environmentValue").innerText = data.environment || 'Pre-Prod';
+      document.getElementById("tagDurationValue").innerText = data.formattedDuration || '0s';
+
+      const tableBody = document.getElementById("testCasesTable");
+      tableBody.innerHTML = "";
+
+      const filteredSpecs = (data.specs || []).filter(spec => {
+        if (currentStatusFilter === 'passed') return spec.status === 'Passed';
+        if (currentStatusFilter === 'failed') return spec.status === 'Failed';
+        if (currentStatusFilter === 'skipped') return spec.status === 'Skipped';
+        return true;
+      });
+
+      if (filteredSpecs.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-slate-400 font-medium">No test cases found for this scope.</td></tr>`;
+      } else {
+        filteredSpecs.forEach(spec => {
+          let statusBadgeClass = "bg-amber-100 text-amber-800 border-amber-300";
+          if (spec.status === "Passed") statusBadgeClass = "bg-emerald-100 text-emerald-800 border-emerald-300";
+          if (spec.status === "Failed") statusBadgeClass = "bg-rose-100 text-rose-800 border-rose-300";
+
+          const hasSteps = spec.steps && spec.steps.length > 0;
+          const hasDetails = hasSteps || (spec.status === 'Failed' && spec.errorMessage);
+          const stepRowId = `steps-${spec.id}`;
+
+          const actionCellHtml = hasDetails 
+            ? `<button onclick="toggleSteps('${stepRowId}', this)" class="w-32 inline-block py-1.5 text-xs font-semibold rounded-md border border-emerald-700 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition-all shadow-sm text-center">
+                Show steps
+               </button>`
+            : `<span class="text-xs text-slate-400 font-medium">No details</span>`;
+
+          const row = `
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="py-3.5 px-4 font-mono text-xs text-slate-600 break-words whitespace-normal">${escapeHtml(spec.suite)}</td>
+              <td class="py-3.5 px-4 font-medium text-slate-900 break-words whitespace-normal">${escapeHtml(spec.title)}</td>
+              <td class="py-3.5 px-4 text-slate-600 font-mono text-xs text-center break-words whitespace-normal">${spec.durationStr}</td>
+              <td class="py-3.5 px-4 text-center">
+                <span class="inline-block px-2.5 py-1 text-xs font-semibold border rounded-full ${statusBadgeClass}">
+                  ${spec.status}
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-center">${actionCellHtml}</td>
+            </tr>
+          `;
+          tableBody.insertAdjacentHTML('beforeend', row);
+
+          if (hasDetails) {
+            const stepsListHtml = spec.steps.map((step, idx) => `
+              <li class="py-1.5 border-b border-slate-200 last:border-0">
+                <span class="text-slate-800 font-medium break-words whitespace-normal">
+                  <strong class="text-emerald-800 font-bold mr-1.5">Step ${idx + 1}:</strong> ${escapeHtml(step.title)}
+                </span>
+              </li>
+            `).join('');
+
+            const failureReasonHtml = spec.status === 'Failed' && spec.errorMessage ? `
+              <div class="mb-3 p-3 bg-rose-50 border border-rose-200 rounded-md">
+                <p class="text-xs font-bold text-rose-800 mb-1 flex items-center gap-1">
+                  <svg class="w-4 h-4 inline shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Failure Reason
+                </p>
+                <pre class="text-xs text-rose-900 font-mono whitespace-pre-wrap break-words bg-rose-100/50 p-2 rounded max-h-60 overflow-y-auto">${escapeHtml(spec.errorMessage)}</pre>
+              </div>
+            ` : '';
+
+            const stepRowHtml = `
+              <tr id="${stepRowId}" class="hidden bg-slate-100/70 border-b border-slate-200">
+                <td colspan="5" class="py-3 px-6">
+                  <div class="bg-white rounded-lg border border-slate-200 p-3 shadow-inner">
+                    ${failureReasonHtml}
+                    ${hasSteps ? `
+                      <p class="text-xs font-bold text-slate-700 mb-2 pb-1 border-b border-slate-100">Execution Steps</p>
+                      <ul class="space-y-0.5">
+                        ${stepsListHtml}
+                      </ul>
+                    ` : ''}
+                  </div>
+                </td>
+              </tr>
+            `;
+            tableBody.insertAdjacentHTML('beforeend', stepRowHtml);
+          }
+        });
+      }
+
+      const passedPct = total > 0 ? ((passed / total) * 100).toFixed(1) + '%' : '0.0%';
+      const failedPct = total > 0 ? ((failed / total) * 100).toFixed(1) + '%' : '0.0%';
+      const skippedPct = total > 0 ? ((skipped / total) * 100).toFixed(1) + '%' : '0.0%';
+
+      const legendContainer = document.getElementById('customLegend');
+      legendContainer.innerHTML = `
+        <div class="flex flex-col items-center text-center">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-sm bg-[#10B981] inline-block"></span>
+            <span class="text-xs font-semibold" style="color: #166242;">Passed</span>
+          </div>
+          <span class="text-sm font-bold text-slate-900 mt-0.5">${passedPct}</span>
+        </div>
+
+        <div class="flex flex-col items-center text-center">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-sm bg-[#EF4444] inline-block"></span>
+            <span class="text-xs font-semibold" style="color: #166242;">Failed</span>
+          </div>
+          <span class="text-sm font-bold text-slate-900 mt-0.5">${failedPct}</span>
+        </div>
+
+        <div class="flex flex-col items-center text-center">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-sm bg-[#F59E0B] inline-block"></span>
+            <span class="text-xs font-semibold" style="color: #166242;">Skipped</span>
+          </div>
+          <span class="text-sm font-bold text-slate-900 mt-0.5">${skippedPct}</span>
+        </div>
+      `;
+
+      if (chartInstance) chartInstance.destroy();
+
+      const ctx = document.getElementById('statusChart').getContext('2d');
+      chartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Passed', 'Failed', 'Skipped'],
+          datasets: [{
+            data: [passed, failed, skipped],
+            backgroundColor: ['#10B981', '#EF4444', '#F59E0B'],
+            borderWidth: 2,
+            borderColor: '#FFFFFF'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const label = context.label || '';
+                  const value = context.raw || 0;
+                  const totalVal = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = totalVal > 0 ? ((value / totalVal) * 100).toFixed(1) + '%' : '0.0%';
+                  return `${label}: ${value} (${percentage})`;
+                }
+              }
+            }
+          },
+          cutout: '60%'
+        }
+      });
+    }
+
+    setExecutionMode('health');
+  </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "-g",
+      "TC-01 Add new electronic auction project"
+    ],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sakani_Playwright",
+        "testIgnore": [
+          "/tests[\\\\/]e2e-scenarios[\\\\/]test-suits-e2e[\\\\/](?!(?:moh-land|auction|offplan-moh-land|offplan-private-land)-booking-journey-suit\\.spec\\.ts$|mega-project-suit\\.spec\\.ts$|payment-tracking-(?:completion-percentage|specified-period)-suit\\.spec\\.ts$)/"
+        ],
+        "testMatch": ["tests/**/*.spec.{js,ts}", "e2e-scenarios/tests/**/*.spec.{js,ts}"],
+        "timeout": 480000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      ["list", null],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-09-21-08-36-02.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts",
+      "file": "tests/test-suits-e2e/auction-booking-journey-suit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Auction booking journey",
+          "file": "tests/test-suits-e2e/auction-booking-journey-suit.spec.ts",
+          "line": 61,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 Add new electronic auction project",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Gov Support",
+                      "type": "critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts",
+                        "line": 62,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 65944,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Define auction start/end date and time",
+                          "duration": 4
+                        },
+                        {
+                          "title": "Step 02: Write the auction start and end dates and times to the Auction_Units.xlsx file",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 03: Login to admin portal",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Navigate to the auction project creation page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Fill in the auction project details",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 05: Select region and city",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 06: Enter date, time and save",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 07: Upload auction media > Enter media details > Save",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 08: Upload auction units file > commit the units",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 09: Save unit model",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 10: Unit model media > Save and approve media",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 11: Unit model auction legal > Upload documents > Save",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 12: Auction setting > enable fee > Save",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 13: Pulish unit model",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 14: Publish auction project",
+                          "duration": 1
+                        }
+                      ],
+                      "startTime": "2026-09-21T08:36:03.529Z",
+                      "annotations": [
+                        {
+                          "product": "Gov Support",
+                          "type": "critical",
+                          "location": {
+                            "file": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\tests\\test-suits-e2e\\auction-booking-journey-suit.spec.ts",
+                            "line": 62,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\test-results\\tests-test-suits-e2e-aucti-55f34--electronic-auction-project-chromium\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\test-results\\tests-test-suits-e2e-aucti-55f34--electronic-auction-project-chromium\\video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "D:\\Playwright Workspace\\github_workspaces\\Sakani_Playwright\\test-results\\tests-test-suits-e2e-aucti-55f34--electronic-auction-project-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2754022a5528ab49af92-b8e3154ed6e8e59d7efb",
+              "file": "tests/test-suits-e2e/auction-booking-journey-suit.spec.ts",
+              "line": 62,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-21T08:36:02.725Z",
+    "duration": 68327.341,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

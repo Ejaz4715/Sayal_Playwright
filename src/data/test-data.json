@@ -1,0 +1,10 @@
+{
+  "environments": {
+    "sayalUrl": "https://test-sayal.housingapps.sa/auth/Login"
+  },
+  "services": {
+    "campaigns": {
+      "price": "100"
+    }
+  }
+}
