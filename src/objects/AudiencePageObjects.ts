@@ -1,1 +1,3 @@
-export const AudiencePageObjects = {} as const;
+export const AudiencePageObjects = {
+  testobject: '',
+} as const;
