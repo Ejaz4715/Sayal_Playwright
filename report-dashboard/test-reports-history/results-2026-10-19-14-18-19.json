@@ -1,0 +1,183 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Eslam.Osman\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--no-deps",
+      "reports-management-filters.spec.ts"
+    ],
+    "configFile": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\playwright.config.ts",
+    "rootDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      }
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          }
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\.setup\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          }
+        },
+        "id": "sayal",
+        "name": "sayal",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [
+          "/auth\\.setup\\.ts/",
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/",
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "tests/**/*.spec.{js,ts}",
+          "e2e-scenarios/tests/**/*.spec.{js,ts}"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          }
+        },
+        "id": "auth-journey",
+        "name": "auth-journey",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          }
+        },
+        "id": "auth-negative",
+        "name": "auth-negative",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-10-19-14-18-19.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: Playwright Test did not expect test.describe() to be called here.\nMost common reasons include:\n- You are calling test.describe() in a configuration file.\n- You are calling test.describe() in a file that is imported by the configuration file.\n- You have two different versions of @playwright/test. This usually happens\n  when one of the dependencies in your package.json depends on @playwright/test.\n- You are calling test.describe() from an async test.describe() block. Only sync ones are supported.",
+      "stack": "Error: Playwright Test did not expect test.describe() to be called here.\nMost common reasons include:\n- You are calling test.describe() in a configuration file.\n- You are calling test.describe() in a file that is imported by the configuration file.\n- You have two different versions of @playwright/test. This usually happens\n  when one of the dependencies in your package.json depends on @playwright/test.\n- You are calling test.describe() from an async test.describe() block. Only sync ones are supported.\n    at _TestTypeImpl._currentSuite (C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\node_modules\\playwright\\lib\\common\\index.js:2224:13)\n    at _TestTypeImpl._describe (C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\node_modules\\playwright\\lib\\common\\index.js:2266:24)\n    at Function.describe (C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\node_modules\\playwright\\lib\\common\\index.js:1154:12)\n    at Object.<anonymous> (C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\reports\\reports-management-filters.spec.ts:9:6)",
+      "location": {
+        "file": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\reports\\reports-management-filters.spec.ts",
+        "column": 6,
+        "line": 9
+      },
+      "snippet": "\u001b[90m   at \u001b[39mtests\\reports\\reports-management-filters.spec.ts:9\n\n\u001b[0m \u001b[90m  7 |\u001b[39m \u001b[36mconst\u001b[39m { campaigns\u001b[33m,\u001b[39m channels\u001b[33m,\u001b[39m clients } \u001b[33m=\u001b[39m \u001b[33mReportsManagementFiltersObjects\u001b[39m\u001b[33m.\u001b[39mdata\u001b[33m;\u001b[39m\n \u001b[90m  8 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Reports management filters'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m   test(\u001b[32m'TC-01 Campaigns, Channels and Clients report filters and reset work'\u001b[39m\u001b[33m,\u001b[39m { annotation\u001b[33m:\u001b[39m [{ product\u001b[33m:\u001b[39m \u001b[32m'Sayal'\u001b[39m\u001b[33m,\u001b[39m type\u001b[33m:\u001b[39m \u001b[32m'non-critical'\u001b[39m } \u001b[36mas\u001b[39m any] }\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ authedPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 11 |\u001b[39m     \u001b[36mconst\u001b[39m reports \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mReportsPage\u001b[39m(authedPage)\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mconst\u001b[39m filters \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mReportsManagementFilters\u001b[39m(authedPage)\u001b[33m;\u001b[39m\u001b[0m"
+    },
+    {
+      "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
+      "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-19T14:18:19.614Z",
+    "duration": 410.5529999999999,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
