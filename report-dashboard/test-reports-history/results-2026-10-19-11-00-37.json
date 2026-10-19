@@ -1,0 +1,356 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\node_modules\\playwright\\cli.js",
+      "test",
+      "tests/campaigns/campaigns-page-filters.spec.ts",
+      "--project=sayal",
+      "--no-deps",
+      "--debug"
+    ],
+    "configFile": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\playwright.config.ts",
+    "rootDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 1,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\.setup\\.ts/"
+        ],
+        "timeout": 0
+      },
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "sayal",
+        "name": "sayal",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [
+          "/auth\\.setup\\.ts/",
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/",
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "testMatch": [
+          "tests/**/*.spec.{js,ts}",
+          "e2e-scenarios/tests/**/*.spec.{js,ts}"
+        ],
+        "timeout": 0
+      },
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-journey",
+        "name": "auth-journey",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/"
+        ],
+        "timeout": 0
+      },
+      {
+        "outputDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-negative",
+        "name": "auth-negative",
+        "testDir": "C:/Users/Eslam.Osman/Desktop/Sakniplaywright/Syail/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth-negative\\.spec\\.ts/"
+        ],
+        "timeout": 0
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-10-19-11-00-37.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\campaigns\\campaigns-page-filters.spec.ts",
+      "file": "tests/campaigns/campaigns-page-filters.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Campaigns page filters — Campaigns",
+          "file": "tests/campaigns/campaigns-page-filters.spec.ts",
+          "line": 32,
+          "column": 8,
+          "specs": [
+            {
+              "title": "TC-01 all filters work on the Campaigns tab",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts",
+                        "line": 33,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 506634,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('لا يوجد بيانات')\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('لا يوجد بيانات') with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByText('لا يوجد بيانات')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('لا يوجد بيانات')\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('لا يوجد بيانات') with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByText('لا يوجد بيانات')\u001b[22m\n\n    at C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts:50:41",
+                        "location": {
+                          "file": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts",
+                          "column": 41,
+                          "line": 50
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 48 |\u001b[39m       \u001b[36mawait\u001b[39m expect\u001b[33m.\u001b[39mpoll(() \u001b[33m=>\u001b[39m requests\u001b[33m.\u001b[39mrequestNumbers())\u001b[33m.\u001b[39mtoContain(target)\u001b[33m;\u001b[39m\n \u001b[90m 49 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m       \u001b[36mawait\u001b[39m logStep(\u001b[32m'Step 05: Clear the request number and search again'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 51 |\u001b[39m       \u001b[36mawait\u001b[39m requests\u001b[33m.\u001b[39msearchInput\u001b[33m.\u001b[39mfill(\u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 52 |\u001b[39m       \u001b[36mawait\u001b[39m requests\u001b[33m.\u001b[39mapplyFilters(tab\u001b[33m.\u001b[39mmarker)\u001b[33m;\u001b[39m\n \u001b[90m 53 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts",
+                            "column": 41,
+                            "line": 50
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('لا يوجد بيانات')\nExpected: visible\nTimeout: 20000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('لا يوجد بيانات') with timeout 20000ms\u001b[22m\n\u001b[2m  - waiting for getByText('لا يوجد بيانات')\u001b[22m\n\n\n  48 |       await expect.poll(() => requests.requestNumbers()).toContain(target);\n  49 |\n> 50 |       await logStep('Step 05: Clear the request number and search again');\n     |                                         ^\n  51 |       await requests.searchInput.fill('');\n  52 |       await requests.applyFilters(tab.marker);\n  53 |\n    at C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts:50:41"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the Campaigns tab",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Read a request number from the first row",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 03: Search by that request number",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 04: Verify the request is listed",
+                          "duration": 2
+                        },
+                        {
+                          "title": "Step 05: Verify the empty state is shown",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-19T11:00:38.708Z",
+                      "annotations": [
+                        {
+                          "product": "Sayal",
+                          "type": "non-critical",
+                          "location": {
+                            "file": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts",
+                            "line": 33,
+                            "column": 9
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\test-results\\tests-campaigns-campaigns--8e3e2-s-work-on-the-Campaigns-tab-sayal\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\test-results\\tests-campaigns-campaigns--8e3e2-s-work-on-the-Campaigns-tab-sayal\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\test-results\\tests-campaigns-campaigns--8e3e2-s-work-on-the-Campaigns-tab-sayal\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\test-results\\tests-campaigns-campaigns--8e3e2-s-work-on-the-Campaigns-tab-sayal\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts",
+                        "column": 41,
+                        "line": 50
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0ac511f071b22de6eaea-67e1094755f2e4009987",
+              "file": "tests/campaigns/campaigns-page-filters.spec.ts",
+              "line": 33,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Campaigns page filters — Quick Promo",
+          "file": "tests/campaigns/campaigns-page-filters.spec.ts",
+          "line": 32,
+          "column": 8,
+          "specs": [
+            {
+              "title": "TC-01 all filters work on the Quick Promo tab",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 0,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "C:\\Users\\Eslam.Osman\\Desktop\\Sakniplaywright\\Syail\\Sayal_Playwright\\tests\\campaigns\\campaigns-page-filters.spec.ts",
+                        "line": 33,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0ac511f071b22de6eaea-a04d8a16558005b0baf9",
+              "file": "tests/campaigns/campaigns-page-filters.spec.ts",
+              "line": 33,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "\u001b[31mTesting stopped early after 1 maximum allowed failures.\u001b[39m"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-19T11:00:37.581Z",
+    "duration": 511474.25399999996,
+    "expected": 0,
+    "skipped": 1,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

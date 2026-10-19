@@ -68,7 +68,10 @@ export class Dropdown {
       .first();
     await expect(item).toBeVisible();
     await item.click();
-    await expect(this.combobox).toHaveAttribute('aria-expanded', 'false');
+    /* `root` is located by its placeholder, which is replaced by the chosen value,
+       so the combobox cannot be re-resolved once an option is selected. The list
+       closing (or the control no longer matching its placeholder) is the signal. */
+    await expect(item).toBeHidden();
   }
 
   /** Select by the stable `data-value` attribute, which mirrors the API id. */
