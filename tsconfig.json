@@ -17,7 +17,8 @@
       "@components/*": ["./src/pages/components/*"],
       "@fixtures/*": ["./src/fixtures/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@data/*": ["./src/data/*"]
+      "@data/*": ["./src/data/*"],
+      "@objects/*": ["./src/objects/*"]
     }
   },
   "include": ["src/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
