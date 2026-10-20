@@ -4,10 +4,12 @@
   },
   "services": {
     "campaigns": {
-      "price": "100"
+      "price": "100",
+      "campaignName": "Automation Unpaid Banner Campaign 20261020133926",
+      "campaignNumber": "2610061"
     },
     "audience": {
-      "audienceName": "Automation Project Offplan 20261019131504"
+      "audienceName": ""
     }
   }
 }

@@ -1,6 +1,6 @@
 import { logStep } from '@helpers/LogSteps';
 import { test } from '@fixtures/pages.fixture';
-import { CampaignsPageFilters } from '@pages/campaigns-page-filterspage';
+import { CampaignsPage } from '@pages/CampaignsPage';
 import { CampaignsPageFiltersObjects } from '@objects/campaigns-page-filters';
 
 const { status, channelType, source } = CampaignsPageFiltersObjects.values;
@@ -13,7 +13,7 @@ const TABS = [
 
 test.describe('Campaigns page filters', () => {
   test('TC-01 all filters work on the Campaigns and Quick Promo tabs', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-    const requests = new CampaignsPageFilters(authedPage);
+    const requests = new CampaignsPage(authedPage);
 
     for (const tab of TABS) {
       await logStep(`Step 01: [${tab.name}] Open the ${tab.name} tab`);

@@ -8,7 +8,7 @@
     "install-playwright": "npx playwright install --with-deps",
     "typecheck": "tsc --noEmit",
     "test": "playwright test --no-deps",
-    "test:grep": "playwright test -g",
+    "test:grep": "playwright test -g --no-deps",
     "test:debug": "playwright test --debug",
     "report": "playwright show-report",
     "codegen": "playwright codegen",

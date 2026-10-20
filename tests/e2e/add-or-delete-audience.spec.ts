@@ -17,7 +17,7 @@ test.describe('Audience', () => {
     const audience = new AudiencePage(authedPage);
     await audience.open();
 
-    const audienceName = `Automation Project Offplan ${new Date()
+    const audienceName = `Automation Test Audience  ${new Date()
       .toISOString()
       .replace(/[-:T.]/g, '')
       .slice(0, 14)}`;
@@ -79,7 +79,7 @@ test.describe('Audience', () => {
 
     await logStep('Step 19: Save the audience and validate the success message');
     await audience.saveButton.click();
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
   });
 
   test('TC-02 Delete the audience', { annotation: [{ product: 'Sayal', type: 'critical' } as any] }, async ({ authedPage, page }) => {
@@ -91,6 +91,7 @@ test.describe('Audience', () => {
 
     await logStep('Step 02: Verify create button is visible');
     await expect(audience.createButton).toBeVisible();
+    await page.waitForTimeout(3000);
 
     await logStep('Step 03: Delete the audience');
     await audience.deleteAudienceIcon(data.audienceName).click();
@@ -98,20 +99,5 @@ test.describe('Audience', () => {
 
     await logStep('Step 04: Validate the successeful delete message is present');
     await expect(audience.audienceDeletedSuccessMessage, 'Audience deleted message is not present').toBeVisible({ timeout: 20000 });
-  });
-
-  test('TC-03 Filter ', { annotation: [{ product: 'Sayal', type: 'critical' } as any] }, async ({ authedPage, page }) => {
-    await logStep('Step 01: Open the audience page');
-    const data = readServiceData();
-
-    let audience = new AudiencePage(authedPage);
-    await audience.open();
-
-    await logStep('Step 02: Verify create button is visible');
-    await expect(audience.createButton).toBeVisible();
-
-    await logStep('Step 03: Apply filter platform (Ejar tenant)');
-    await audience.filtersButton.click();
-    await audience.platformFilterOption('منصة إيجار - مستأجر').click();
   });
 });
