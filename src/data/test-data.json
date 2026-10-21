@@ -35,6 +35,10 @@
         "content": "DoctorTest",
         "updatedTitle": "Test2"
       }
+      "price": "100"
+    },
+    "audience": {
+      "audienceName": "Automation Project Offplan 20261019131504"
     }
   }
 }

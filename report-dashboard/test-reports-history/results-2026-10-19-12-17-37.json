@@ -1,0 +1,318 @@
+{
+  "config": {
+    "argv": ["C:\\Program Files\\nodejs\\node.exe", "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\node_modules\\@playwright\\test\\cli.js", "test", "add-or-delete-audience.spec.ts"],
+    "configFile": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\playwright.config.ts",
+    "rootDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "environment": "Pre-Prod",
+      "environments": {
+        "Sakani": "Pre-Prod",
+        "Digitar": "STG",
+        "Sayal": "Pre-Prod"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": ["/auth\\.setup\\.ts/"],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "sayal",
+        "name": "sayal",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": ["/auth\\.setup\\.ts/", "/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/", "/auth-negative\\.spec\\.ts/"],
+        "testMatch": ["tests/**/*.spec.{js,ts}", "e2e-scenarios/tests/**/*.spec.{js,ts}"],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-journey",
+        "name": "auth-journey",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": ["/auth[\\\\/]authentication-and-logout-journey\\.spec\\.ts/"],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "environment": "Pre-Prod",
+          "environments": {
+            "Sakani": "Pre-Prod",
+            "Digitar": "STG",
+            "Sayal": "Pre-Prod"
+          },
+          "actualWorkers": 1
+        },
+        "id": "auth-negative",
+        "name": "auth-negative",
+        "testDir": "D:/Playwright Workspace/github_workspaces/Sayal_Playwright",
+        "testIgnore": [],
+        "testMatch": ["/auth-negative\\.spec\\.ts/"],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      ["list", null],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "report-dashboard/test-reports-history/results-2026-10-19-12-17-37.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests\\setup\\auth.setup.ts",
+      "file": "tests/setup/auth.setup.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Pre-condition [Authenticate as admin]",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [
+                {
+                  "product": "Sayal",
+                  "type": "non-critical",
+                  "location": {
+                    "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\setup\\auth.setup.ts",
+                    "line": 28,
+                    "column": 6
+                  }
+                },
+                {
+                  "type": "note",
+                  "description": "Reused the stored admin session; no login attempt spent."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "setup",
+              "projectName": "setup",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4595,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "Step 01: Check whether the saved admin session is still valid",
+                      "duration": 0
+                    },
+                    {
+                      "title": "Step 02: Reuse the valid session without another login attempt",
+                      "duration": 1
+                    }
+                  ],
+                  "startTime": "2026-10-19T12:17:37.838Z",
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\setup\\auth.setup.ts",
+                        "line": 28,
+                        "column": 6
+                      }
+                    },
+                    {
+                      "type": "note",
+                      "description": "Reused the stored admin session; no login attempt spent."
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-setup-auth.setup.ts--33e79-tion-Authenticate-as-admin--setup\\test-finished-1.png"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\test-results\\tests-setup-auth.setup.ts--33e79-tion-Authenticate-as-admin--setup\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "73b107e88d32d8019190-a693e315920ba5920ad8",
+          "file": "tests/setup/auth.setup.ts",
+          "line": 28,
+          "column": 6
+        }
+      ]
+    },
+    {
+      "title": "tests\\e2e\\add-or-delete-audience.spec.ts",
+      "file": "tests/e2e/add-or-delete-audience.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Audience",
+          "file": "tests/e2e/add-or-delete-audience.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01 Empty state guides the user to create",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [
+                    {
+                      "product": "Sayal",
+                      "type": "non-critical",
+                      "location": {
+                        "file": "D:\\Playwright Workspace\\github_workspaces\\Sayal_Playwright\\tests\\e2e\\add-or-delete-audience.spec.ts",
+                        "line": 8,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "sayal",
+                  "projectName": "sayal",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Step 01: Open the audience page",
+                          "duration": 0
+                        },
+                        {
+                          "title": "Step 02: Verify create button is visible",
+                          "duration": 1
+                        },
+                        {
+                          "title": "Step 02: Navigate to add new audience",
+                          "duration": 0
+                        }
+                      ],
+                      "startTime": "2026-10-19T12:17:43.424Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "80b3687b415861f0c267-cbafb50b0e1fbc05ca45",
+              "file": "tests/e2e/add-or-delete-audience.spec.ts",
+              "line": 8,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-19T12:17:37.035Z",
+    "duration": 527818.554,
+    "expected": 1,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
