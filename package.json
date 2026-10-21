@@ -12,7 +12,7 @@
     "test:debug": "playwright test --debug",
     "report": "playwright show-report",
     "codegen": "playwright codegen",
-    "clear-reports": "echo 'Cleaning history folder...' && node -e \"fs.rmSync('report-dashboard/teFst-reports-history', { recursive: true, force: true }); fs.mkdirSync('report-dashboard/test-reports-history', { recursive: true });\"",
+    "clear-reports": "echo 'Cleaning history folder...' && node -e \"fs.rmSync('report-dashboard/test-reports-history', { recursive: true, force: true }); fs.mkdirSync('report-dashboard/test-reports-history', { recursive: true });\"",
     "merge-results": "node report-dashboard/merge-results.js",
     "generate-report": "node report-dashboard/generate-dashboard.js",
     "open-report": "open-cli report-dashboard/dashboard.html",

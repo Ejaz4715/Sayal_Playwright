@@ -4,6 +4,37 @@
   },
   "services": {
     "campaigns": {
+      "titlePrefix": "Eslam Test",
+      "price": "5000",
+      "details": {
+        "paid": {
+          "client": "الشركة الوطنية للاسكان",
+          "goal": "زيادة الوعي",
+          "paymentType": "مدفوع",
+          "agreementNumber": "12345"
+        },
+        "unpaid": {
+          "client": "الشركة الوطنية للاسكان",
+          "goal": "زيادة الوعي"
+        },
+        "unpaidWithQuotation": {
+          "client": "عميل جديد ١",
+          "goal": "زيادة الوعي"
+        }
+      },
+      "popup": {
+        "channelType": "نافذة منبثقة",
+        "description": "test"
+      },
+      "notification": {
+        "channelType": "إشعارات",
+        "messageTitle": "AutomationTest",
+        "link": "https://pre-sayal.housingapps.sa/main/admin/Requests/Add",
+        "daysAhead": 1,
+        "audience": "Everyone",
+        "content": "DoctorTest",
+        "updatedTitle": "Test2"
+      }
       "price": "100"
     },
     "audience": {
