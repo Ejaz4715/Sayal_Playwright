@@ -4,6 +4,8 @@
   },
   "services": {
     "campaigns": {
+      "campaignName": "Automation Paid Banner Campaign 20261021152549",
+      "campaignNumber": "2610114",
       "titlePrefix": "Eslam Test",
       "price": "5000",
       "details": {
@@ -35,10 +37,9 @@
         "content": "DoctorTest",
         "updatedTitle": "Test2"
       }
-      "price": "100"
     },
     "audience": {
-      "audienceName": "Automation Project Offplan 20261019131504"
+      "audienceName": ""
     }
   }
 }

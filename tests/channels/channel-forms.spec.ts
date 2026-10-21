@@ -1,7 +1,7 @@
 import { logStep } from '@helpers/LogSteps';
 import { test, expect } from '@fixtures/pages.fixture';
 import { RequestDetailPage } from '@pages/RequestDetailPage';
-import { CampaignsPage } from '@pages/CampaignsPage';
+import { ChannelsPage } from '@pages/ChannelsPage';
 import { READONLY_FIXTURES, CHANNEL_STATUS } from '@data/testData';
 
 const NEW_REQUEST = READONLY_FIXTURES.requests.new;
@@ -17,7 +17,6 @@ const NEW_REQUEST = READONLY_FIXTURES.requests.new;
  */
 test.describe('Channel add forms', () => {
   test('TC-01 SMS form (الرسائل النصية) exposes its scheduling, link and message fields', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
     await logStep('Step 01: Open the request detail page');
     const detail = new RequestDetailPage(authedPage);
     await detail.open(NEW_REQUEST.uuid);
@@ -48,10 +47,7 @@ test.describe('Channel add forms', () => {
     await expect(body).toHaveAttribute('maxlength', '196');
   });
 
-  test('TC-02 Notification form (إشعارات) exposes a 5000-character body and an audience selector', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({
-    authedPage,
-  }) => {
-
+  test('TC-02 Notification form (إشعارات) exposes a 5000-character body and an audience selector', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
     await logStep('Step 01: Open the request detail page');
     const detail = new RequestDetailPage(authedPage);
     await detail.open(NEW_REQUEST.uuid);
@@ -76,10 +72,7 @@ test.describe('Channel add forms', () => {
     await expect(body).toHaveAttribute('maxlength', '5000');
   });
 
-  test('TC-03 Banner form (مساحة إعلانية) exposes a date range and an indexed banner array', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({
-    authedPage,
-  }) => {
-
+  test('TC-03 Banner form (مساحة إعلانية) exposes a date range and an indexed banner array', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
     await logStep('Step 01: Open the request detail page');
     const detail = new RequestDetailPage(authedPage);
     await detail.open(NEW_REQUEST.uuid);
@@ -111,7 +104,6 @@ test.describe('Channel add forms', () => {
    * fails and someone re-reads the model.
    */
   test('TC-04 Email form (البريد الإلكتروني) exposes only a description field', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
     await logStep('Step 01: Open the request detail page');
     const detail = new RequestDetailPage(authedPage);
     await detail.open(NEW_REQUEST.uuid);
@@ -123,14 +115,10 @@ test.describe('Channel add forms', () => {
     await expect(authedPage.getByPlaceholder('الوصف')).toBeVisible();
 
     await logStep('Step 04: Verify the email form has no message body');
-    await expect(
-      authedPage.locator('textarea[name="body"]'),
-      'Email stores no message body',
-    ).toHaveCount(0);
+    await expect(authedPage.locator('textarea[name="body"]'), 'Email stores no message body').toHaveCount(0);
   });
 
   test('TC-05 WhatsApp form (واتساب) exposes only a description field', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
     await logStep('Step 01: Open the request detail page');
     const detail = new RequestDetailPage(authedPage);
     await detail.open(NEW_REQUEST.uuid);
@@ -142,14 +130,10 @@ test.describe('Channel add forms', () => {
     await expect(authedPage.getByPlaceholder('الوصف')).toBeVisible();
 
     await logStep('Step 04: Verify the WhatsApp form has no message body');
-    await expect(
-      authedPage.locator('textarea[name="body"]'),
-      'WhatsApp stores no message body',
-    ).toHaveCount(0);
+    await expect(authedPage.locator('textarea[name="body"]'), 'WhatsApp stores no message body').toHaveCount(0);
   });
 
   test('TC-06 Cold-calling form (الاتصال البيعي) exposes only a description field', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
     await logStep('Step 01: Open the request detail page');
     const detail = new RequestDetailPage(authedPage);
     await detail.open(NEW_REQUEST.uuid);
@@ -161,14 +145,10 @@ test.describe('Channel add forms', () => {
     await expect(authedPage.getByPlaceholder('الوصف')).toBeVisible();
 
     await logStep('Step 04: Verify the cold-calling form has no message body');
-    await expect(
-      authedPage.locator('textarea[name="body"]'),
-      'Cold-calling stores no message body',
-    ).toHaveCount(0);
+    await expect(authedPage.locator('textarea[name="body"]'), 'Cold-calling stores no message body').toHaveCount(0);
   });
 
   test('TC-07 Popup form (نافذة منبثقة) exposes only a description field', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
     await logStep('Step 01: Open the request detail page');
     const detail = new RequestDetailPage(authedPage);
     await detail.open(NEW_REQUEST.uuid);
@@ -180,31 +160,26 @@ test.describe('Channel add forms', () => {
     await expect(authedPage.getByPlaceholder('الوصف')).toBeVisible();
 
     await logStep('Step 04: Verify the popup form has no message body');
-    await expect(
-      authedPage.locator('textarea[name="body"]'),
-      'Popup stores no message body',
-    ).toHaveCount(0);
+    await expect(authedPage.locator('textarea[name="body"]'), 'Popup stores no message body').toHaveCount(0);
   });
 });
 
 test.describe('Channels list', () => {
   test('TC-08 Channel list renders its 7 columns', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
     await logStep('Step 01: Open the channels list');
-    const campaigns = new CampaignsPage(authedPage);
+    const campaigns = new ChannelsPage(authedPage);
     await campaigns.open();
 
     await logStep('Step 02: Read the column headers from the channels list');
     const headers = await campaigns.table.headers();
 
     await logStep('Step 03: Verify table headers meets the expected condition');
-    expect(headers).toEqual([...CampaignsPage.COLUMNS]);
+    expect(headers).toEqual([...ChannelsPage.COLUMNS]);
   });
 
-  test('TC-09 channel numbers encode their channel type', { annotation : [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
+  test('TC-09 channel numbers encode their channel type', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
     await logStep('Step 01: Open the channels list');
-    const campaigns = new CampaignsPage(authedPage);
+    const campaigns = new ChannelsPage(authedPage);
     await campaigns.open();
 
     await logStep('Step 02: Read all channel records');
@@ -215,19 +190,15 @@ test.describe('Channels list', () => {
 
     await logStep('Step 04: Verify channel meets the expected condition');
     for (const row of rows) {
-              const letter = CampaignsPage.TYPE_LETTERS[row.type];
+      const letter = ChannelsPage.TYPE_LETTERS[row.type];
       if (!letter) continue;
-      expect(
-        row.channel,
-        `${row.channel} is a ${row.type} channel, so it should follow {request}${letter}{seq}`,
-      ).toMatch(new RegExp(`^${row.request}${letter}\\d+$`));
+      expect(row.channel, `${row.channel} is a ${row.type} channel, so it should follow {request}${letter}{seq}`).toMatch(new RegExp(`^${row.request}${letter}\\d+$`));
     }
   });
 
   test('TC-10 every channel status is one of the six known values', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
-
     await logStep('Step 01: Open the channels list');
-    const campaigns = new CampaignsPage(authedPage);
+    const campaigns = new ChannelsPage(authedPage);
     await campaigns.open();
 
     await logStep('Step 02: Read all channel records');

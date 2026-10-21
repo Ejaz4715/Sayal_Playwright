@@ -147,7 +147,7 @@ export class AudiencePage extends BasePage {
   }
 
   platformFilterOption(platform: string): Locator {
-    return this.page.getByRole('button', { name: platform });
+    return this.page.getByRole('menuitem', { name: platform });
   }
 
   filterField(placeholder: string): Locator {

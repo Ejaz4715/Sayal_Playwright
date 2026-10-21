@@ -3,6 +3,7 @@ import { BasePage } from './BasePage';
 import { AppShell } from './components/AppShell';
 import { DataTable, TableVariant } from './components/DataTable';
 import { Pagination } from './components/Pagination';
+import { CommonMethods } from './util/CommonMethods';
 
 /**
  * Shared behaviour for the eight admin screens built on the `.TableNhc` div
@@ -26,13 +27,7 @@ export class AdminListPage extends BasePage {
    *   `.TableNhc` div grid, but Banner Definitions renders a real `<table>` —
    *   so this cannot be assumed per-family and is stated per-screen.
    */
-  constructor(
-    page: Page,
-    route: string,
-    expectedColumns: readonly string[],
-    apiPath: string,
-    variant: TableVariant = 'grid',
-  ) {
+  constructor(page: Page, route: string, expectedColumns: readonly string[], apiPath: string, variant: TableVariant = 'grid') {
     super(page);
     this.path = route;
     this.shell = new AppShell(page);
@@ -60,10 +55,7 @@ export class AdminListPage extends BasePage {
    * pre-production, so a row is a legitimate readiness signal.
    */
   async open(): Promise<void> {
-    const response = this.page.waitForResponse(
-      (r) => r.url().includes(this.apiPath) && r.status() === 200,
-      { timeout: 60_000 },
-    );
+    const response = this.page.waitForResponse((r) => r.url().includes(this.apiPath) && r.status() === 200, { timeout: 60_000 });
     await this.goto();
     await response.catch(() => null);
     await expect(this.table.container).toBeVisible();
