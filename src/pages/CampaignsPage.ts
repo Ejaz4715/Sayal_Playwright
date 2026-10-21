@@ -4,8 +4,55 @@ import { AppShell } from './components/AppShell';
 import { DataTable } from './components/DataTable';
 import { Dropdown } from './components/Dropdown';
 import { CampaignsPageFiltersObjects as O } from '../objects/campaigns-page-filters';
+import { send } from 'node:process';
+import { DateUtils } from './util/DateUtils';
 
 export type CampaignsTab = 'standard' | 'quickPromo';
+
+/**
+ * List of channels for campaigns
+ */
+export enum CampaignChannels {
+  SMS = 'الرسائل النصية',
+  Email = 'البريد الإلكتروني',
+  AdSpace = 'مساحة إعلانية',
+  Notification = 'إشعارات',
+  WhatsApp = 'واتساب',
+  SalesCall = 'الاتصال البيعي',
+  Popup = 'نافذة منبثقة',
+}
+
+/**
+ * List of send platforms for banner
+ */
+export enum BannerPlatforms {
+  Web = 'Sakani',
+  Mobile = 'Sakani Mobile App',
+}
+
+/**
+ * List of send ids for sms campaign
+ */
+export enum SmsSenders {
+  Ejar = 'Ejar',
+  EjarAD = 'Ejar_AD',
+  Idlelands = 'Idlelands',
+  Mostadam = 'Mostadam',
+  Mullak = 'Mullak',
+  NHC = 'NHC',
+  Sakani = 'Sakani',
+  SakaniAD = 'Sakani-AD',
+}
+
+/**
+ * List of toast messages
+ */
+export enum ToastMessages {
+  FollowUpCampaign = 'قم بمتابعة الحملة من خلال لوحة التحكم',
+  CampaignAddedSuccessfully = 'تم إضافة الاعلان بنجاح',
+  CampaignApprovedSuccessfully = 'تم الموافقة علي الحملة بنجاح',
+  DeletedSuccessfully = 'تم الحذف بنجاح',
+}
 
 /**
  * Page object for campaign creation and the campaign requests list used by
@@ -17,6 +64,7 @@ export type CampaignsTab = 'standard' | 'quickPromo';
  * Authentication is deliberately not here: the spec gets a signed-in page from
  * the `authedPage` fixture, which reuses the stored admin session.
  */
+
 export class CampaignsPage extends BasePage {
   protected path = O.route;
   readonly shell: AppShell;
@@ -81,6 +129,10 @@ export class CampaignsPage extends BasePage {
     return this.page.getByText('تم الموافقة علي الحملة بنجاح');
   }
 
+  toastMessages(message: string): Locator {
+    return this.page.getByText(message);
+  }
+
   get campaignTitleField(): Locator {
     return this.page.getByLabel('عنوان الحملة*');
   }
@@ -93,11 +145,11 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('listbox').getByText(option, { exact: true });
   }
 
-  get paidCampaignOption(): Locator {
+  get paidCampaignRadioButton(): Locator {
     return this.page.locator("//label[@for = 'paid_1']");
   }
 
-  get unpaidCampaignOption(): Locator {
+  get unpaidCampaignRadioButton(): Locator {
     return this.page.locator("//label[@for = 'paid_0']");
   }
 
@@ -109,7 +161,11 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('button', { name: 'التالي' });
   }
 
-  get bannerPlatformOption(): Locator {
+  async clickNextButton(): Promise<void> {
+    await this.nextButton.click();
+  }
+
+  bannerPlatformOptions(platform: string): Locator {
     return this.page.getByRole('listbox').filter({ hasText: 'SakaniSakani Mobile App' }).getByText('Sakani', { exact: true });
   }
 
@@ -145,6 +201,11 @@ export class CampaignsPage extends BasePage {
     return this.page.getByText(placement);
   }
 
+  async selectBannerPlacement(placement: string): Promise<void> {
+    await this.bannerPlacementCombobox.click();
+    await this.bannerPlacementOption(placement).click();
+  }
+
   get bannerFileInput(): Locator {
     return this.page.locator("//input[@type='file']");
   }
@@ -165,12 +226,21 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('button', { name: 'حفظ' });
   }
 
+  async saveChannel(): Promise<void> {
+    await this.saveButton.click();
+  }
+
   get campaignNumber(): Locator {
     return this.page.locator("//h3[contains (text(), 'رقم الحملة')]/parent::div/descendant::h4");
   }
 
-  campaignRowActionMenu(campaignName: string): Locator {
+  campaignActionMenu(campaignName: string): Locator {
     return this.page.getByRole('row').filter({ hasText: campaignName }).locator('div.menuChildren > svg');
+  }
+
+  async openCampaignDetails(campaignName: string): Promise<void> {
+    await this.campaignActionMenu(campaignName).click();
+    await this.viewCampaignDetailsOption.click();
   }
 
   get viewCampaignDetailsOption(): Locator {
@@ -181,8 +251,16 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('button', { name: 'موافقة على الطلب' });
   }
 
+  async approveCampaignRequest(): Promise<void> {
+    await this.approveRequestButton.click();
+  }
+
   get confirmButton(): Locator {
     return this.page.getByRole('button', { name: 'تأكيد' });
+  }
+
+  async clickConfirmButton(): Promise<void> {
+    await this.confirmButton.click();
   }
 
   get quotationLink(): Locator {
@@ -203,8 +281,13 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('button', { name: 'إنشاء عرض السعر' });
   }
 
-  get checkbox(): Locator {
+  get agreementCheckbox(): Locator {
     return this.page.getByRole('checkbox');
+  }
+
+  async startQuotationAndAcceptAgreement(): Promise<void> {
+    await this.createQuotationButton.click();
+    await this.agreementCheckbox.check();
   }
 
   get priceField(): Locator {
@@ -215,6 +298,10 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('button', { name: 'إرسال' });
   }
 
+  async sendQuotation(): Promise<void> {
+    await this.sendButton.click();
+  }
+
   get successMessage(): Locator {
     return this.page.getByText('نجاح', { exact: true });
   }
@@ -223,18 +310,38 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('button', { name: 'تم' });
   }
 
+  async dismissQuotationSuccess(): Promise<void> {
+    await this.doneButton.click();
+  }
+
+  async openQuotationLink(): Promise<Page> {
+    const popupPromise = this.page.waitForEvent('popup');
+    await this.quotationLink.click();
+    return popupPromise;
+  }
+
   // ------------------- Campaign qoutation link page  ------------------------------------------
 
-  acceptButton(page: any): Locator {
+  acceptButton(page: Page): Locator {
     return page.getByRole('button', { name: 'قبول' });
   }
 
-  downloadQuotationButton(page: any): Locator {
+  downloadQuotationButton(page: Page): Locator {
     return page.getByRole('button', { name: 'تنزيل عرض السعر' });
   }
 
-  rejectButton(page: any): Locator {
+  rejectButton(page: Page): Locator {
     return page.getByRole('button', { name: 'رفض' });
+  }
+
+  async clickQuotationAction(page: Page, action: string): Promise<void> {
+    if (action.toLocaleLowerCase() === 'accept') {
+      await this.acceptButton(page).click();
+    } else if (action.toLocaleLowerCase() === 'downloadQuotation') {
+      await this.downloadQuotationButton(page).click();
+    } else {
+      await this.rejectButton(page).click();
+    }
   }
 
   rejectReasonField(page: any): Locator {
@@ -243,6 +350,10 @@ export class CampaignsPage extends BasePage {
 
   campaignDetailsTab(page: any): Locator {
     return page.locator("//button[normalize-space() = 'تفاصيل الحملة']");
+  }
+
+  async openCampaignDetailsTab(page: Page): Promise<void> {
+    await this.campaignDetailsTab(page).click();
   }
 
   priceWithoutVat(page: any): Locator {
@@ -256,6 +367,116 @@ export class CampaignsPage extends BasePage {
   confirmRejectionButton(page: any): Locator {
     return page.getByRole('button', { name: 'تأكيد' });
   }
+
+  /**
+   * SMS campaign specific locators only starting from here
+   */
+
+  get targetAudienceDropdown(): Locator {
+    return this.page.getByRole('combobox').filter({ hasText: 'اختر الجمهور المستهدف' });
+  }
+
+  audienceOptions(audience: string): Locator {
+    return this.page.getByText(audience);
+  }
+
+  get selectAudienceRadioButton(): Locator {
+    return this.page.locator("//input[@id='campaign_type_sms_1']/parent::label");
+  }
+
+  get audienceCount(): Locator {
+    return this.page.locator("//div[contains (@class, 'sms_audienceSummaryText')]/child::div[2]");
+  }
+
+  get dateField(): Locator {
+    return this.page.getByPlaceholder('التاريخ');
+  }
+
+  get timeField(): Locator {
+    return this.page.locator("//input[@id='time']");
+  }
+
+  get senderIdDropdown(): Locator {
+    return this.page.getByRole('combobox').filter({ hasText: 'هوية المرسل' });
+  }
+
+  senderIdOptions(sender: string): Locator {
+    return this.page.getByText(sender, { exact: true }).first();
+  }
+
+  get channelLinkField(): Locator {
+    return this.page.getByLabel('رابط القناة');
+  }
+
+  get messageContentField(): Locator {
+    return this.page.getByPlaceholder('فضلاً إختصار محتوى الرسالة بقدر الإمكان');
+  }
+
+  get deleteCampaignButton(): Locator {
+    return this.page.getByRole('button', { name: 'حذف الحملة' });
+  }
+
+  get confirmDeleteButton(): Locator {
+    return this.page.getByRole('button', { name: 'تأكيد الحذف' });
+  }
+
+  async selectTargetAudienceAndValidateTheAudienceCount(audienceName: string) {
+    // 1. Select the audience
+    await this.targetAudienceDropdown.click();
+    await this.audienceOptions(audienceName).click();
+    await this.page.waitForTimeout(3000);
+    // 2. Get the audience count element
+    const countText = await this.audienceCount.textContent();
+
+    // 3. Clean the text (remove commas or extra spaces) and convert to a number
+    const cleanText = countText ? countText.replace(/,/g, '').trim() : '0';
+    const count = parseInt(cleanText, 10);
+
+    // 4. Validate that the count is greater than 0
+    expect(count).toBeGreaterThan(0);
+  }
+
+  async clickSelectAudienceRadioButton() {
+    await this.selectAudienceRadioButton.click();
+  }
+
+  async selectSmsDayAndTime() {
+    let time = DateUtils.getFormattedFutureTime(90, 'HH:MM:SS', false);
+    // time = time.replace(/:/g, '').slice(0, 6);
+    await this.dateField.click();
+    await this.todayInCalendar.click();
+    await this.timeField.click();
+    await this.timeField.pressSequentially(time, { delay: 100 });
+  }
+
+  async selectSmsSender(sender: SmsSenders) {
+    await this.senderIdDropdown.click();
+    await this.senderIdOptions(sender).click();
+  }
+
+  async enterChannelLink(link: string) {
+    await this.channelLinkField.fill(link);
+  }
+
+  async enterMessage(message: string) {
+    await this.messageContentField.fill(message);
+  }
+
+  async validateToastMessage(message: ToastMessages) {
+    await expect(this.toastMessages(message), message + ' is not present').toBeVisible();
+  }
+
+  async clickDeleteCampaignButton() {
+    await this.deleteCampaignButton.click();
+  }
+
+  async clickConfirmDeleteCampaignButton() {
+    await this.confirmDeleteButton.click();
+  }
+
+  /**
+   * SMS campaign specific locators only ending here
+   */
 
   // -------------------------------------------------------------- navigation
 
@@ -287,7 +508,6 @@ export class CampaignsPage extends BasePage {
     const responsePromise = this.page.waitForResponse((r) => r.url().includes(O.api.list) && r.url().includes(marker));
     await action();
     const response = await responsePromise;
-
     const firstNumber = await response
       .json()
       .then((j) => {
@@ -295,7 +515,6 @@ export class CampaignsPage extends BasePage {
         return rows[0]?.request_number ?? rows[0]?.number ?? null;
       })
       .catch(() => null);
-
     if (firstNumber) {
       await expect(this.table.rows.first(), `the ${marker} payload leads with ${firstNumber}, so the grid must render it`).toContainText(String(firstNumber));
     } else {
@@ -360,6 +579,30 @@ export class CampaignsPage extends BasePage {
     await this.applyFilters(tab);
   }
 
+  async fillCampaignTitle(title: string): Promise<void> {
+    await this.campaignTitleField.fill(title);
+  }
+
+  async fillAgreementNumber(agreementNumber: string): Promise<void> {
+    await this.agreementNumberField.fill(agreementNumber);
+  }
+
+  async fillBannerTitle(title: string): Promise<void> {
+    await this.bannerTitleField.fill(title);
+  }
+
+  async fillBannerLink(link: string): Promise<void> {
+    await this.bannerLinkField.fill(link);
+  }
+
+  async fillQuotationPrice(price: string): Promise<void> {
+    await this.priceField.fill(price);
+  }
+
+  async fillRejectReason(page: Page, reason: string): Promise<void> {
+    await this.rejectReasonField(page).fill(reason);
+  }
+
   // -------------------------------------------------------------- assertions
 
   async expectRequestListed(requestNumber: string): Promise<void> {
@@ -379,6 +622,53 @@ export class CampaignsPage extends BasePage {
    */
   async expectAllRowsContain(header: string, value: string): Promise<void> {
     await expect.poll(async () => (await this.columnValues(header)).every((v) => v.includes(value))).toBe(true);
+  }
+
+  async selectCampaignClient(clientName: string) {
+    await this.campaignCombobox('اسم العميل').click();
+    await this.listboxOption(clientName).first().click();
+  }
+
+  async selectCampaignGoal(goal: string) {
+    await this.campaignCombobox('هدف الحملة').click();
+    await this.listboxOption(goal).first().click();
+  }
+
+  async selectChannel(channel: CampaignChannels) {
+    await this.campaignCombobox('اضافة قناة').click();
+    await this.listboxOption(channel).click();
+  }
+
+  async selectBannerPlatform(platform: BannerPlatforms) {
+    await this.campaignCombobox('اختر المنصة').click();
+    await this.bannerPlatformOptions(platform).click();
+  }
+
+  async selectBannerStartDate() {
+    await this.campaignStartDateField.click();
+    await this.todayInCalendar.click();
+  }
+
+  async selectBannerEndDate() {
+    await this.campaignEndDateField.click();
+    await this.nextDayInCalendar.click();
+  }
+
+  async uploadBannerImage(file: string) {
+    await this.bannerFileInput.setInputFiles(file);
+    await expect(this.uploadedBannerFileName).toBeVisible({ timeout: 20000 });
+  }
+
+  async previewCampaign(): Promise<void> {
+    await this.previewCampaignButton.click();
+  }
+
+  async selectCampaignPaymentType(type: string) {
+    if (type.toLocaleLowerCase() === 'paid') {
+      await this.paidCampaignRadioButton.click();
+    } else {
+      await this.unpaidCampaignRadioButton.click();
+    }
   }
 
   /**

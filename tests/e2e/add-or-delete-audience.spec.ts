@@ -7,13 +7,10 @@ import { DataHelper } from '@helpers/DataHelper';
 
 const SERVICE = 'audience';
 const readServiceData = () => DataHelper.readData().services[SERVICE];
-const readEnvironments = () => DataHelper.readData().environments;
 
 test.describe('Audience', () => {
   test('TC-01 Add new audience', { annotation: [{ product: 'Sayal', type: 'critical' } as any] }, async ({ authedPage, page }) => {
     await logStep('Step 01: Open the audience page');
-    const data = readServiceData();
-
     const audience = new AudiencePage(authedPage);
     await audience.open();
 
