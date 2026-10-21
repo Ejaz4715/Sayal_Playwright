@@ -3,7 +3,7 @@ node_modules/
 
 # Generated Test Reports & Artifacts
 playwright-report/
-test-results/
+test-results/*
 report-dashboard/test-reports-history*/
 report-dashboard/test*/
 report-dashboard/dashboard.html

@@ -1,6 +1,6 @@
 import { logStep } from '@helpers/LogSteps';
 import { test } from '@fixtures/pages.fixture';
-import { CampaignWithPopup } from '@pages/Campaign/campaignWithPopupPaidandUnpaid';
+import { CampaignWithPopup } from '@pages/Campaign/PopupCampaign';
 import testData from '@data/test-data.json';
 
 const { titlePrefix, price, details, popup } = testData.services.campaigns;

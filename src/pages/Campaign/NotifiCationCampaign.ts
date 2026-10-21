@@ -1,6 +1,5 @@
-import { CampaignWithPopup } from './campaignWithPopupPaidandUnpaid';
+import { CampaignWithPopup } from './PopupCampaign';
 import { CampaignWithNotificationObjects as notificationLocators } from '@objects/campains/campaignPaid&Unpaid';
-
 
 export class CampaignWithNotification extends CampaignWithPopup {
   async fillMessageTitle(title: string): Promise<void> {

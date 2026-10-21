@@ -11,7 +11,6 @@ export type CampaignDetails = {
   agreementNumber?: string;
 };
 
-
 export class CampaignWithPopup extends BasePage {
   readonly shell: AppShell;
   /** The public quotation page, available once `openPublicQuotation` has run. */
@@ -78,7 +77,10 @@ export class CampaignWithPopup extends BasePage {
     const date = new Date();
     date.setDate(date.getDate() + daysAhead);
     await this.page.getByRole('textbox', { name: notificationLocators.fields.date }).click();
-    await this.page.getByLabel(notificationLocators.dayLabel(String(date.getDate()).padStart(2, '0'))).first().click();
+    await this.page
+      .getByLabel(notificationLocators.dayLabel(String(date.getDate()).padStart(2, '0')))
+      .first()
+      .click();
   }
 
   async next(): Promise<void> {
