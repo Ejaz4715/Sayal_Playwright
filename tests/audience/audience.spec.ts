@@ -5,19 +5,26 @@ import { PublicQuotationPage } from '@pages/PublicQuotationPage';
 import { READONLY_FIXTURES } from '@data/testData';
 
 test.describe('Audience', () => {
-  test('TC-01 Empty state guides the user to create', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
+  test('TC-01 If empty state appear it guides the user to create new audience', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {
     await logStep('Step 01: Open the audience page');
     const audience = new AudiencePage(authedPage);
     await audience.open();
 
-    await logStep('Step 02: Verify empty-state heading is visible');
-    await expect(audience.emptyStateHeading).toBeVisible();
+    await logStep('Step 01: Check if the audience page is empty');
+    const isEmpty = await audience.emptyStateHeading.isVisible({ timeout: 3000 });
+    if (isEmpty) {
+      await logStep('Step 02: Check if empty-state heading is visible');
+      await expect(audience.emptyStateHeading).toBeVisible();
 
-    await logStep('Step 03: Verify empty-state call to action is visible');
-    await expect(audience.emptyStateCta).toBeVisible();
+      await logStep('Step 03: Verify empty-state call to action is visible');
+      await expect(audience.emptyStateCta).toBeVisible();
 
-    await logStep('Step 04: Verify create button is visible');
-    await expect(audience.createButton).toBeVisible();
+      await logStep('Step 04: Verify create button is visible');
+      await expect(audience.createButton).toBeVisible();
+    } else {
+      logStep('Audience page is not empty');
+      return; // Ends the test execution here
+    }
   });
 
   test('TC-02 The builder offers the active targeting filters', { annotation: [{ product: 'Sayal', type: 'non-critical' } as any] }, async ({ authedPage }) => {

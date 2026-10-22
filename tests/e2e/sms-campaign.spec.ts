@@ -45,7 +45,7 @@ test.describe('SMS campaigns', () => {
     await campaigns.enterMessage('Testing SMS campaign message with Sakani as a sender and audience selected');
 
     await logStep('Step 07: Save channel and validate the toast message');
-    await campaigns.saveChannel();
+    await campaigns.clickSaveButton();
     await campaigns.validateToastMessage(ToastMessages.FollowUpCampaign);
     await campaigns.previewCampaign();
 
@@ -112,7 +112,7 @@ test.describe('SMS campaigns', () => {
     await campaigns.enterMessage('Testing SMS campaign message with Sakani as a sender and audience selected');
 
     await logStep('Step 07: Save channel and validate the toast message');
-    await campaigns.saveChannel();
+    await campaigns.clickSaveButton();
     await campaigns.validateToastMessage(ToastMessages.FollowUpCampaign);
     await campaigns.previewCampaign();
 
@@ -121,7 +121,7 @@ test.describe('SMS campaigns', () => {
     DataHelper.updateServiceData(SERVICE, 'campaignNumber', campaignNumber);
   });
 
-  test('TC-04 Delete the SMS channel campaign', { annotation: [{ product: 'Sayal', type: 'critical' } as any] }, async ({ authedPage, page }) => {
+  test('TC-04 Cancel the unpaid SMS channel campaign', { annotation: [{ product: 'Sayal', type: 'critical' } as any] }, async ({ authedPage, page }) => {
     await logStep('Step 01: Open the audience page');
     const data = readServiceData();
     const campaigns = new CampaignsPage(authedPage);
@@ -137,8 +137,7 @@ test.describe('SMS campaigns', () => {
     await campaigns.openCampaignDetails(data.campaignName);
 
     await logStep('Step 04: Delete the campaign');
-    await campaigns.clickDeleteCampaignButton();
-    await campaigns.clickConfirmDeleteCampaignButton();
-    await campaigns.validateToastMessage(ToastMessages.DeletedSuccessfully);
+    await campaigns.clickCancelCampaignButtonAndConfirm();
+    await campaigns.validateToastMessage(ToastMessages.UpdatedSuccessfully);
   });
 });

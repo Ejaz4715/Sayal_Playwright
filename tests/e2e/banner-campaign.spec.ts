@@ -49,7 +49,7 @@ test.describe('Banner campaigns', () => {
     await campaigns.uploadBannerImage(image);
 
     await logStep('Step 07: Save channel and validate the toast message');
-    await campaigns.saveChannel();
+    await campaigns.clickSaveButton();
     await campaigns.validateToastMessage(ToastMessages.CampaignAddedSuccessfully);
 
     await logStep('Step 08: Navigate to preview campaign and get the campaign number ');
@@ -104,7 +104,6 @@ test.describe('Banner campaigns', () => {
     await campaigns.selectCampaignClient('الشركة الوطنية للاسكان');
     await campaigns.selectCampaignGoal('زيادة الوعي');
     await campaigns.selectCampaignPaymentType('unpaid');
-    await campaigns.fillAgreementNumber('11231');
     await campaigns.clickNextButton();
 
     await logStep('Step 05: Select channel - Banner');
@@ -120,7 +119,7 @@ test.describe('Banner campaigns', () => {
     await campaigns.uploadBannerImage(image);
 
     await logStep('Step 07: Save channel and validate the toast message');
-    await campaigns.saveChannel();
+    await campaigns.clickSaveButton();
     await campaigns.validateToastMessage(ToastMessages.CampaignAddedSuccessfully);
 
     await logStep('Step 08: Navigate to preview campaign and get the campaign number ');
