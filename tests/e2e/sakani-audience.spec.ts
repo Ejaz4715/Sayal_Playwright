@@ -14,7 +14,7 @@ test.describe('Audience', () => {
     const audience = new AudiencePage(authedPage);
     await audience.open();
 
-    const audienceName = `Automation Test Audience  ${new Date()
+    const audienceName = `Automation Test Audience ${new Date()
       .toISOString()
       .replace(/[-:T.]/g, '')
       .slice(0, 14)}`;
@@ -76,7 +76,7 @@ test.describe('Audience', () => {
 
     await logStep('Step 19: Save the audience and validate the success message');
     await audience.saveButton.click();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(10000);
   });
 
   test('TC-02 Delete the audience', { annotation: [{ product: 'Sayal', type: 'critical' } as any] }, async ({ authedPage, page }) => {

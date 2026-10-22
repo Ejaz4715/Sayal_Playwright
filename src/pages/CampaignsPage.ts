@@ -18,7 +18,7 @@ export enum CampaignChannels {
   AdSpace = 'مساحة إعلانية',
   Notification = 'إشعارات',
   WhatsApp = 'واتساب',
-  SalesCall = 'الاتصال البيعي',
+  SalesCalling = 'الاتصال البيعي',
   Popup = 'نافذة منبثقة',
 }
 
@@ -52,6 +52,9 @@ export enum ToastMessages {
   CampaignAddedSuccessfully = 'تم إضافة الاعلان بنجاح',
   CampaignApprovedSuccessfully = 'تم الموافقة علي الحملة بنجاح',
   DeletedSuccessfully = 'تم الحذف بنجاح',
+  AddedSuccessfully = 'تمت الإضافة بنجاح',
+  EditSuccessfully = 'تمت التعديل بنجاح',
+  UpdatedSuccessfully = 'تم التحديث بنجاح',
 }
 
 /**
@@ -222,11 +225,15 @@ export class CampaignsPage extends BasePage {
     return this.page.getByRole('button', { name: 'إلغاء القناة' });
   }
 
+  get confirmCancelChannelButton(): Locator {
+    return this.page.getByRole('button', { name: 'تأكيد الإلغاء' });
+  }
+
   get saveButton(): Locator {
     return this.page.getByRole('button', { name: 'حفظ' });
   }
 
-  async saveChannel(): Promise<void> {
+  async clickSaveButton(): Promise<void> {
     await this.saveButton.click();
   }
 
@@ -474,9 +481,43 @@ export class CampaignsPage extends BasePage {
     await this.confirmDeleteButton.click();
   }
 
+  async clickCancelCampaignButtonAndConfirm() {
+    await this.cancelChannelButton.click();
+    await this.confirmCancelChannelButton.click();
+  }
+
   /**
    * SMS campaign specific locators only ending here
    */
+
+  /**
+   * Sales Calling campaign specific locators starting from here
+   */
+  get titleInput(): Locator {
+    return this.page.locator("//input[@id='title']");
+  }
+
+  get editChannelButton(): Locator {
+    return this.page.getByRole('button', { name: 'تعديل القناة' });
+  }
+
+  get editCampaignButton(): Locator {
+    return this.page.getByRole('button', { name: 'تعديل الحملة' });
+  }
+
+  async enterSalesCallingTitle(title: string) {
+    await this.titleInput.click();
+    await this.titleInput.clear();
+    await this.titleInput.fill(title);
+  }
+
+  async clickEditCampaignButton() {
+    await this.editCampaignButton.click();
+  }
+
+  async clickEditChannelButton() {
+    await this.editChannelButton.click();
+  }
 
   // -------------------------------------------------------------- navigation
 

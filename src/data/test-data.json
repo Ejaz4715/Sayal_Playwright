@@ -4,10 +4,10 @@
   },
   "services": {
     "campaigns": {
-      "campaignName": "Automation Paid Banner Campaign 20261021152549",
-      "campaignNumber": "2610114",
+      "campaignName": "Automation Unpaid SMS Campaign 20261022102357",
+      "campaignNumber": "2610132",
       "titlePrefix": "Eslam Test",
-      "price": "5000",
+      "price": "100",
       "details": {
         "paid": {
           "client": "الشركة الوطنية للاسكان",
@@ -39,7 +39,7 @@
       }
     },
     "audience": {
-      "audienceName": ""
+      "audienceName": "Automation Test Audience 20261022111518"
     }
   }
 }
